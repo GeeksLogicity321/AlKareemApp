@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -8,7 +7,7 @@ class CustomTheme {
   var lightTheme = ThemeData.light(useMaterial3: true).copyWith(
     scaffoldBackgroundColor: kSecondaryColor,
     primaryColor: kPrimaryColor,
-    primaryIconTheme: const IconThemeData(color: kSecondaryColor),
+    primaryIconTheme: const IconThemeData(color: Colors.white),
 
     colorScheme: ColorScheme.fromSeed(seedColor: kPrimaryColor).copyWith(
       secondary: kSecondaryColor,
@@ -55,79 +54,87 @@ class CustomTheme {
     ),
 
     inputDecorationTheme: const InputDecorationTheme().copyWith(
-      contentPadding: EdgeInsets.symmetric(vertical: 4.w, horizontal: 1.h),
+      contentPadding: EdgeInsets.symmetric(vertical: 1.w, horizontal: 4.w),
       filled: true,
-      fillColor: kSecondaryColor,
+      fillColor: Color(0xffD8D8DD),
       prefixIconColor: kPrimaryColor,
-      suffixIconColor: kPrimaryColor,
+      alignLabelWithHint: true,
+
+      suffixIconColor: Colors.grey,
+      floatingLabelBehavior: FloatingLabelBehavior.auto,
+      floatingLabelAlignment: FloatingLabelAlignment.start,
+      floatingLabelStyle: TextStyle(fontSize: 10.sp),
+      hintStyle: TextStyle(
+        fontSize: 10.sp,
+        color: kTextLightColor,
+      ),
       //label style for formField
       labelStyle: TextStyle(
           fontSize: 15.sp, color: kTextLightColor, fontWeight: FontWeight.w400),
 
       enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-              color: kTextLightColor, width: kWidthOfInputBoarder),
-          borderRadius: kBorderRadiusAll),
+            color: kTextLightColor,
+          ),
+          borderRadius: BorderRadius.circular(1.w)),
       border: OutlineInputBorder(
           borderSide: const BorderSide(
-              color: kTextLightColor, width: kWidthOfInputBoarder),
-          borderRadius: kBorderRadiusAll),
+            color: kTextLightColor,
+          ),
+          borderRadius: BorderRadius.circular(1.w)),
       disabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-              color: kTextLightColor, width: kWidthOfInputBoarder),
-          borderRadius: kBorderRadiusAll),
+            color: kTextLightColor,
+          ),
+          borderRadius: BorderRadius.circular(1.w)),
       // on focus  change color
       focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-              color: kSecondaryColor, width: kWidthOfInputBoarder),
-          borderRadius: kBorderRadiusAll),
+            color: kSecondaryColor,
+          ),
+          borderRadius: BorderRadius.circular(1.w)),
       //color changes when user enters wrong information,
 
       errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-              color: kErrorBorderColor, width: kWidthOfInputBoarder),
-          borderRadius: kBorderRadiusAll),
+            color: kErrorBorderColor,
+          ),
+          borderRadius: BorderRadius.circular(1.w)),
       //same on focus error color
       focusedErrorBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             color: kErrorBorderColor,
-            width: kWidthOfInputBoarder,
           ),
-          borderRadius: kBorderRadiusAll),
+          borderRadius: BorderRadius.circular(1.w)),
     ),
     textTheme: TextTheme().copyWith(
       //custom text for headline
       headlineSmall: TextStyle(
-        color: kOtherColor,
+        color: kTextBlackColor,
         fontSize: 10.sp,
       ),
       headlineMedium: TextStyle(
-        color: kOtherColor,
-        fontWeight: FontWeight.w300,
+        color: kTextBlackColor,
+        fontWeight: FontWeight.bold,
         fontSize: 15.sp,
       ),
       headlineLarge: TextStyle(
-          color: kOtherColor, fontWeight: FontWeight.w400, fontSize: 35.sp
-          //  SizerUtil.deviceType == DeviceType.tablet ? 22.sp : 35.sp,
-          ),
+          color: kTextBlackColor, fontWeight: FontWeight.bold, fontSize: 20.sp),
 
       // body text style
-      bodyLarge: const TextStyle(
-        color: kOtherColor,
-        // fontSize: 11.sp,
-      ),
+      bodyLarge: TextStyle(
+          color: kTextBlackColor, fontSize: 20.sp, fontWeight: FontWeight.w500),
       bodyMedium: TextStyle(
         color: kOtherColor,
         fontSize: 15.sp,
       ),
-      bodySmall: TextStyle(
-          color: kTextBlackColor, fontSize: 9.sp, fontWeight: FontWeight.w500),
+      bodySmall: TextStyle(fontSize: 10.sp, color: Colors.grey),
 
       // title style
-      titleMedium: TextStyle(
-          color: kTextBlackColor, fontSize: 17.sp, fontWeight: FontWeight.w700),
+      titleLarge: TextStyle(
+          fontSize: 19.sp, fontWeight: FontWeight.bold, color: kPrimaryColor),
       titleSmall: TextStyle(
-          color: kTextBlackColor, fontSize: 13.sp, fontWeight: FontWeight.w500),
+          color: kPrimaryColor, fontSize: 13.sp, fontWeight: FontWeight.w500),
     ),
   );
 }

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:realestate/View/SplashScreen/StartScreen.dart';
+import 'package:realestate/View/HomeScreen.dart';
+import 'package:realestate/View/LoginScreen.dart';
+import 'View/SplashScreen/OnBoardingScreen.dart';
 
 import 'View/SplashScreen/SplashScreen.dart';
-import 'View/SplashScreen/StartScreen2.dart';
-
+import 'View/SplashScreen/OnBoardingScreen2.dart';
 
 Map<String, WidgetBuilder> namedRoutes = {
   '/': (context) => const SplashScreen(),
-  StartScreen.routename: (context) =>
-      const StartScreen(),
-      OnboardingScreen.routename: (context) =>
-       OnboardingScreen(),
+  StartScreen.routename: (context) => const StartScreen(),
+  OnboardingScreen.routename: (context) => OnboardingScreen(),
+  LoginScreen.routename: (context) => LoginScreen(),
+  HomePageScreen.routename: (context) => HomePageScreen(),
   // SplashScreen.routename: (context) => const SplashScreen(),
   // IccMenRankingScreen.routeName: (context) => const IccMenRankingScreen(),
   // IccWomenRankingScreen.routeName: (context) => const IccWomenRankingScreen(),
