@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:realestate/View/HomeScreen.dart';
+import 'package:realestate/View/BottomNavigationBar.dart';
 import 'package:realestate/constants/constants.dart';
 import 'package:sizer/sizer.dart';
 
@@ -81,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushReplacementNamed(
-                          context, HomePageScreen.routename);
+                          context, BottomNavigationBarWidget.routename);
                     },
                     child: Text('Next'),
                   ),
