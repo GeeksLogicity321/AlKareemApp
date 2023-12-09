@@ -56,7 +56,7 @@ class CustomTheme {
     inputDecorationTheme: const InputDecorationTheme().copyWith(
       contentPadding: EdgeInsets.symmetric(vertical: 1.w, horizontal: 4.w),
       filled: true,
-      fillColor: Color(0xffD8D8DD),
+      fillColor: KformfieldColor,
       prefixIconColor: kPrimaryColor,
       alignLabelWithHint: true,
 

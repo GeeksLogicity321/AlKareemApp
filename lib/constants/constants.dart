@@ -15,9 +15,7 @@ const Color kOtherColor = kPrimaryColor;
 const Color kTextLightColor = Color(0xFFA5A5A5);
 const Color kUnselectedColor = Color.fromARGB(255, 128, 128, 128);
 const Color kErrorBorderColor = Color(0xFFE74C3C);
-
-
-
+const Color KformfieldColor = Color(0xffD8D8DD);
 
 const kWidthOfInputBoarder = 0.7;
 // final kDefaultWidthPadding = 4.w;
@@ -58,8 +56,6 @@ final kBottomBorderRadius = BorderRadius.only(
   bottomLeft:
       Radius.circular(SizerUtil.deviceType == DeviceType.tablet ? 40 : 20),
 );
-
-
 
 //validation for mobile
 const String mobilePattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
