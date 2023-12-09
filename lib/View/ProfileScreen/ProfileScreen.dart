@@ -47,26 +47,50 @@ class ProfileScreen extends StatelessWidget {
 
                 }, title: 'Due Date',icon: Icons.calendar_month_outlined,),
                 ProfileTiles(ontap: (){
-                  Navigator.pushNamed(context, PaymentssScreen.routename);
+                  // Navigator.pushNamed(context, PaymentssScreen.routename);
+                  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const PaymentssScreen()),
+  );
                 }, title: 'Payments',icon: Icons.wallet),
                 Container(
                 width: double.infinity,
                 height: 0.11.h,color: Colors.grey,),
           
                 ProfileTiles(ontap: (){
-                    Navigator.pushNamed(context, AccountScreen.routename);
+                    // Navigator.pushNamed(context, AccountScreen.routename);
+                    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const ProfileScreen()),
+  );
                 }, title: 'Profile',icon: Icons.calendar_month_outlined,),
                 ProfileTiles(ontap: (){
-                    Navigator.pushNamed(context, NotificationScreen.routename);
+                    // Navigator.pushNamed(context, NotificationScreen.routename);
+                    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const NotificationScreen()),
+  );
                 }, title: 'Notification',icon: Icons.wallet),
                 ProfileTiles(ontap: (){
-                    Navigator.pushNamed(context, SecurityScreen.routename);
+                    // Navigator.pushNamed(context, SecurityScreen.routename);
+                    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const SecurityScreen()),
+  );
                 }, title: 'Security',icon: Icons.shield_outlined,),
                 ProfileTiles(ontap: (){
-                    Navigator.pushNamed(context, LanguageScreen.routename);
+                    // Navigator.pushNamed(context, LanguageScreen.routename);
+                    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const LanguageScreen()),
+  );
                 }, title: 'Language',icon: Icons.g_translate),
                 ProfileTiles(ontap: (){
-                    Navigator.pushNamed(context, HelpcenterScreen.routename);
+                    // Navigator.pushNamed(context, HelpcenterScreen.routename);
+                    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const HelpcenterScreen()),
+  );
                 }, title: 'Help center',icon: Icons.question_mark_rounded,),
                 SizedBox(height: 2.h,),
                 Padding(
