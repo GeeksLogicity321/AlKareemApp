@@ -45,7 +45,7 @@ class StartScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
-                    width: 20.w,
+                    width: 30.w,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushReplacementNamed(
@@ -69,7 +69,7 @@ class StartScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: 20.w,
+                    width: 30.w,
                     child: ElevatedButton(
                         onPressed: () {
                           Navigator.pushReplacementNamed(

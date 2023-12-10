@@ -180,7 +180,10 @@ class PropertyDetailScreen extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 4.w, right: 4.w, bottom: 1.h),
+              margin: EdgeInsets.only(
+                left: 4.w,
+                right: 4.w,
+              ),
               padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
               decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 75, 75, 75),
@@ -209,6 +212,170 @@ class PropertyDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
+            IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        'On booking',
+                        style: TextStyle(fontSize: 10.sp, color: Colors.black),
+                      ),
+                      Container(
+                        color: kPrimaryColor,
+                        height: 0.5.w,
+                        width: 50.w,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 1.2.h),
+                        child: Text(
+                          '60 Monthly Installments',
+                          style:
+                              TextStyle(fontSize: 10.sp, color: Colors.black),
+                        ),
+                      ),
+                      Container(
+                        color: kPrimaryColor,
+                        height: 0.5.w,
+                        width: 50.w,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 1.2.h),
+                        child: Text(
+                          '10 half yearly installments',
+                          style:
+                              TextStyle(fontSize: 10.sp, color: Colors.black),
+                        ),
+                      ),
+                      Container(
+                        color: kPrimaryColor,
+                        height: 0.5.w,
+                        width: 50.w,
+                      ),
+                      Text(
+                        'Demarcation of plot',
+                        style: TextStyle(fontSize: 10.sp, color: Colors.black),
+                      ),
+                      Container(
+                        color: kPrimaryColor,
+                        height: 0.5.w,
+                        width: 50.w,
+                      ),
+                      Text(
+                        'Before Possession',
+                        style: TextStyle(fontSize: 10.sp, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                  VerticalDivider(
+                    color: kPrimaryColor,
+                    width: 0.5.w,
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        '500,000',
+                        style: TextStyle(fontSize: 10.sp, color: Colors.black),
+                      ),
+                      Container(
+                        color: kPrimaryColor,
+                        height: 0.5.w,
+                        width: 49.w,
+                      ),
+                      Text(
+                        '15000x60',
+                        style: TextStyle(fontSize: 10.sp, color: Colors.black),
+                      ),
+                      Text(
+                        '900,000',
+                        style: TextStyle(fontSize: 10.sp, color: Colors.black),
+                      ),
+                      Container(
+                        color: kPrimaryColor,
+                        height: 0.5.w,
+                        width: 49.w,
+                      ),
+                      Text(
+                        '50,000x10',
+                        style: TextStyle(fontSize: 10.sp, color: Colors.black),
+                      ),
+                      Text(
+                        '500,000',
+                        style: TextStyle(fontSize: 10.sp, color: Colors.black),
+                      ),
+                      Container(
+                        color: kPrimaryColor,
+                        height: 0.5.w,
+                        width: 49.w,
+                      ),
+                      Text(
+                        '100,000',
+                        style: TextStyle(fontSize: 10.sp, color: Colors.black),
+                      ),
+                      Container(
+                        color: kPrimaryColor,
+                        height: 0.5.w,
+                        width: 49.w,
+                      ),
+                      Text(
+                        '100,000',
+                        style: TextStyle(fontSize: 10.sp, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    color: kPrimaryColor,
+                    height: 0.5.w,
+                  ),
+                ],
+              ),
+            ),
+            // IntrinsicHeight(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //     children: [
+            //       Expanded(
+            //         child: IntrinsicWidth(
+            //           child: Column(
+            //             children: [
+            //               Text(
+            //                 'On booking',
+            //                 style:
+            //                     TextStyle(fontSize: 13.sp, color: Colors.black),
+            //               ),
+            //               Divider(
+            //                 color: kPrimaryColor,
+            //                 thickness: 0.5.w,
+            //               )
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       VerticalDivider(
+            //         color: kPrimaryColor,
+            //         width: 0.5.w,
+            //       ),
+            //       Expanded(
+            //         child: IntrinsicWidth(
+            //           child: Column(
+            //             children: [
+            //               Text(
+            //                 'On booking',
+            //                 style:
+            //                     TextStyle(fontSize: 13.sp, color: Colors.black),
+            //               ),
+            //               Divider(
+            //                 color: kPrimaryColor,
+            //                 thickness: 0.5.w,
+            //               )
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Container(
               margin: EdgeInsets.only(left: 4.w, right: 4.w, bottom: 1.h),
               padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
