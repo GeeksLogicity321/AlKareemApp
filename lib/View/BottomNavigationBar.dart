@@ -30,22 +30,20 @@ class BottomNavigationBarWidget extends StatelessWidget {
           inactiveColorPrimary: Colors.grey,
         ),
         PersistentBottomNavBarItem(
-          icon: Icon(Icons.money_outlined),
+          icon: Image.asset('Assets/image 6.png'),
           activeColorSecondary: Colors.white,
           title: 'Installments',
           activeColorPrimary: kPrimaryColor,
           inactiveColorPrimary: Colors.grey,
         ),
         PersistentBottomNavBarItem(
-          icon: Icon(
-            Icons.fifteen_mp_outlined,
-          ),
+          icon: Image.asset('Assets/image 7.png'),
           title: 'Penalty',
           activeColorPrimary: kPrimaryColor,
           activeColorSecondary: Colors.white,
           inactiveColorPrimary: Colors.grey,
         ),
-         PersistentBottomNavBarItem(
+        PersistentBottomNavBarItem(
           icon: Icon(
             Icons.person,
           ),
@@ -55,13 +53,11 @@ class BottomNavigationBarWidget extends StatelessWidget {
           inactiveColorPrimary: Colors.grey,
         ),
       ],
-      
       confineInSafeArea: true,
       backgroundColor: Colors.white,
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
       stateManagement: true,
-      
       hideNavigationBarWhenKeyboardShows: true,
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(10.0),

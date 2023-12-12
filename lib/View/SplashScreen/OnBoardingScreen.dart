@@ -75,7 +75,7 @@ class StartScreen extends StatelessWidget {
                           Navigator.pushReplacementNamed(
                               context, OnboardingScreen.routename);
                         },
-                        child: Text('start')),
+                        child: Text('Start')),
                   )
                 ],
               ),

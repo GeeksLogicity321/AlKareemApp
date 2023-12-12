@@ -61,7 +61,7 @@ class CustomTheme {
       alignLabelWithHint: true,
 
       suffixIconColor: Colors.grey,
-      floatingLabelBehavior: FloatingLabelBehavior.auto,
+      floatingLabelBehavior: FloatingLabelBehavior.never,
       floatingLabelAlignment: FloatingLabelAlignment.start,
       floatingLabelStyle: TextStyle(fontSize: 10.sp),
       hintStyle: TextStyle(

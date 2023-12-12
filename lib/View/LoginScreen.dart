@@ -37,16 +37,21 @@ class LoginScreen extends StatelessWidget {
                   height: 8.h,
                 ),
                 TextFormField(
+                  validator: ,
+                  keyboardType: TextInputType.emailAddress,
                   style: TextStyle(fontSize: 10.sp),
                   decoration: InputDecoration().copyWith(
                     labelText: 'Email',
                     hintText: 'Email',
+                    
                   ),
                 ),
                 SizedBox(
                   height: 2.h,
                 ),
                 TextFormField(
+                  obscureText: true,
+                  keyboardType: TextInputType.visiblePassword,
                   style: TextStyle(fontSize: 10.sp),
                   decoration: InputDecoration()
                       .copyWith(labelText: 'Password', hintText: 'Password'),
@@ -89,57 +94,8 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                   height: 2.h,
                 ),
-                Image.asset('Assets/Group 4057.png'),
-                SizedBox(
-                  height: 2.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Color(0xff484848),
-                            borderRadius: BorderRadius.circular(2.w)),
-                        height: 6.h,
-                        width: 28.w,
-                        child: Icon(
-                          Icons.apple,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Color(0xff484848),
-                            borderRadius: BorderRadius.circular(2.w)),
-                        height: 6.h,
-                        width: 28.w,
-                        child: Icon(
-                          Icons.g_mobiledata_sharp,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Color(0xff484848),
-                            borderRadius: BorderRadius.circular(2.w)),
-                        height: 6.h,
-                        width: 28.w,
-                        child: Icon(
-                          Icons.facebook,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                
+
                 SizedBox(
                   height: 6.h,
                 ),
