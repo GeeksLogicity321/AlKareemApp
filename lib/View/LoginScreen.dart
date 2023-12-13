@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:realestate/Utills/AuthFunction.dart';
 import 'package:realestate/View/BottomNavigationBar.dart';
-import 'package:realestate/constants/constants.dart';
+import 'package:realestate/ViewModel/AuthProvider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../ViewModel/ValidationFunction.dart';
+import '../Utills/validation.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -58,20 +57,28 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 8.h,
                     ),
                     TextFormField(
-                      validator: (value) {
-                        return validateEmail(value);
+                      onChanged: (value) {
+                        context.read<LoginProvider>().setUniqueId(value);
                       },
-                      keyboardType: TextInputType.emailAddress,
+                      controller: _emailController,
+                      // validator: (value) {
+                      //   return validateUniqueId(value);
+                      // },
+                      keyboardType: TextInputType.number,
                       style: TextStyle(fontSize: 10.sp),
                       decoration: InputDecoration().copyWith(
-                        labelText: 'Email',
-                        hintText: 'Email',
+                        labelText: 'Unique Id',
+                        hintText: 'Unique Id',
                       ),
                     ),
                     SizedBox(
                       height: 2.h,
                     ),
                     TextFormField(
+                      controller: _passwordController,
+                      onChanged: (value) {
+                        context.read<LoginProvider>().setPassword(value);
+                      },
                       validator: (value) {
                         return validatePassword(value);
                       },
@@ -121,13 +128,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          _formKey.currentState!.validate()
-                              ? Navigator.pushReplacementNamed(
-                                  context, BottomNavigationBarWidget.routename)
-                              : null;
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            if (await context
+                                .read<LoginProvider>()
+                                .login(context)) {
+                              Navigator.pushReplacementNamed(
+                                  context, BottomNavigationBarWidget.routename);
+                            }
+                          }
                         },
-                        child: Text('Next'),
+                        child: context.read<LoginProvider>().isLoading
+                            ? CircularProgressIndicator(
+                                color: Colors.white,
+                              )
+                            : Text('Login'),
                       ),
                     ),
                     SizedBox(
@@ -136,30 +151,30 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: 6.h,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Don’t have an account? ",
-                          style: TextStyle(
-                            color: kTextWhiteColor,
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Text(
-                            "Signup",
-                            style: TextStyle(
-                              color: kPrimaryColor,
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.bold,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Text(
+                    //       "Don’t have an account? ",
+                    //       style: TextStyle(
+                    //         color: kTextWhiteColor,
+                    //         fontSize: 12.sp,
+                    //       ),
+                    //     ),
+                    //     GestureDetector(
+                    //       onTap: () {},
+                    //       child: Text(
+                    //         "Signup",
+                    //         style: TextStyle(
+                    //           color: kPrimaryColor,
+                    //           fontSize: 12.sp,
+                    //           fontWeight: FontWeight.bold,
+                    //           decoration: TextDecoration.underline,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // )
                   ],
                 ),
               ),

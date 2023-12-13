@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:sizer/sizer.dart';
 
 import '../../Widgets/spinningImage.dart';
+import '../BottomNavigationBar.dart';
 import 'OnBoardingScreen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -20,12 +22,22 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    wait5MinAndNavigate();
+    checkTokenAndNavigate(context);
+    // wait5MinAndNavigate();
   }
 
-  void wait5MinAndNavigate() async {
-    await Future.delayed(Duration(seconds: 5));
-    Navigator.pushReplacementNamed(context, StartScreen.routename);
+  void checkTokenAndNavigate(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    bool authToken = prefs.containsKey('auth_token');
+    if (authToken) {
+      await Future.delayed(Duration(seconds: 3));
+      Navigator.pushReplacementNamed(
+          context, BottomNavigationBarWidget.routename);
+    } else {
+      await Future.delayed(Duration(seconds: 5));
+      Navigator.pushReplacementNamed(context, StartScreen.routename);
+    }
   }
 
   @override
