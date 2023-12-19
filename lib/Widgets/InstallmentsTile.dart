@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class InstallmentsTile extends StatelessWidget {
-  const InstallmentsTile({
+  InstallmentsTile({
     super.key,
+    required this.plotNumber,
+    required this.amount,
+    required this.blockName,
   });
+  String plotNumber;
+  String blockName;
+  int amount;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,7 @@ class InstallmentsTile extends StatelessWidget {
           child: Image.asset('Assets/image 21.png'),
         ),
         title: Text(
-          'Plot No. #  134',
+          'Plot No. #  $plotNumber',
           style: TextStyle(
             fontSize: 13.sp,
           ),
@@ -25,7 +31,7 @@ class InstallmentsTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Block Malik',
+              blockName,
               style: TextStyle(
                 fontSize: 13.sp,
               ),
@@ -41,7 +47,7 @@ class InstallmentsTile extends StatelessWidget {
         ),
         trailing: Column(
           children: [
-            Text('Rs. 15,000',
+            Text('Rs. ${amount.toString()}',
                 style: TextStyle(
                     fontSize: 10.sp,
                     color: Colors.black,

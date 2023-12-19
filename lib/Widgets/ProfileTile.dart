@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileTiles extends StatelessWidget {
-    final IconData? icon;
+  final IconData? icon;
   final String title;
   final VoidCallback ontap;
   const ProfileTiles(
@@ -14,7 +14,7 @@ class ProfileTiles extends StatelessWidget {
       child: InkWell(
         onTap: () => ontap(),
         child: ListTile(
-         tileColor: Colors.transparent,
+          tileColor: Colors.transparent,
           leading: Icon(
             icon,
             color: Colors.black,
@@ -26,7 +26,7 @@ class ProfileTiles extends StatelessWidget {
                 .bodyMedium!
                 .copyWith(color: Colors.black),
           ),
-            trailing: Icon(Icons.arrow_forward_ios_sharp),
+          trailing: Icon(Icons.arrow_forward_ios_sharp),
         ),
       ),
     );

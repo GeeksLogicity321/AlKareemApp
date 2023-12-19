@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:realestate/View/PropertyDetailScreen.dart';
+import 'package:realestate/ViewModel/AuthProvider.dart';
 import 'package:realestate/constants/constants.dart';
 import 'package:sizer/sizer.dart';
+
+import '../Widgets/HomeFeaturedWidget.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -22,7 +26,7 @@ class HomeScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.bodySmall,
             ),
             Text(
-              'Muhammad Kareem',
+              context.read<LoginProvider>().userObject.data!.name ?? '',
               style: Theme.of(context).textTheme.headlineSmall,
             )
           ],
@@ -119,84 +123,39 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.black, fontSize: 14.sp),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(2.w)),
-              margin: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'Assets/Group 3906.png',
-                    height: 6.h,
-                  ),
-                  SizedBox(
-                    width: 2.w,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Pay Installments',
-                        style: TextStyle(
-                            fontSize: 13.sp,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text('QuickPay  Your Money With EasyPaisa',
-                          style: TextStyle(
-                            fontSize: 10.sp,
-                            color: Colors.black,
-                          )),
-                    ],
-                  ),
-                  Spacer(),
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: kPrimaryColor,
-                  )
-                ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(2.w)),
-              margin: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-              padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'Assets/Group 3906 (1).png',
-                    height: 6.h,
-                  ),
-                  SizedBox(
-                    width: 2.w,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Having an issue?',
-                        style: TextStyle(
-                            fontSize: 13.sp,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text('contact Our Support Agent.',
-                          style: TextStyle(
-                            fontSize: 10.sp,
-                            color: Colors.black,
-                          )),
-                    ],
-                  ),
-                  Spacer(),
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: kPrimaryColor,
-                  )
-                ],
+            Center(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+                child: Wrap(
+                  spacing: 6.w,
+                  runSpacing: 3.h,
+                  children: [
+                    HomeFeaturedWidget(
+                      imagePath: 'Assets/emailIcon.png',
+                      title: 'AlKareem\nfacility',
+                    ),
+                    HomeFeaturedWidget(
+                      imagePath: 'Assets/form.png',
+                      title: 'Forms',
+                    ),
+                    HomeFeaturedWidget(
+                      imagePath: 'Assets/Map.png',
+                      title: 'Maps',
+                    ),
+                    HomeFeaturedWidget(
+                      imagePath: 'Assets/gallery.png',
+                      title: 'Gallery',
+                    ),
+                    HomeFeaturedWidget(
+                      imagePath: 'Assets/Complaints.png',
+                      title: 'Complaints',
+                    ),
+                    HomeFeaturedWidget(
+                      imagePath: 'Assets/WaterBill.png',
+                      title: 'Water Bill',
+                    ),
+                  ],
+                ),
               ),
             ),
             Padding(

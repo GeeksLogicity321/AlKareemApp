@@ -1,55 +1,66 @@
+import 'PlotModel.dart';
+
 class UserModel {
+  bool? success;
+  String? message;
+  String? token;
+  Data? data;
+
+  UserModel({this.success, this.message, this.token, this.data});
+
+  UserModel.fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    message = json['message'];
+    token = json['Token'];
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+  }
+}
+
+class Data {
   String? sId;
   String? name;
   String? uniqueId;
   String? hashPassword;
-  // List<Null>? plotId;
+  List<PlotModel>? plotId;
   bool? paymentOnThatMonth;
+  bool? isVerify;
   String? createdAt;
   String? updatedAt;
   int? iV;
+  String? oTP;
+  String? profilePic;
 
-  UserModel(
+  Data(
       {this.sId,
       this.name,
       this.uniqueId,
       this.hashPassword,
-      // this.plotId,
+      this.plotId,
       this.paymentOnThatMonth,
+      this.isVerify,
       this.createdAt,
       this.updatedAt,
-      this.iV});
+      this.iV,
+      this.oTP,
+      this.profilePic});
 
-  UserModel.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     uniqueId = json['uniqueId'];
     hashPassword = json['hash_password'];
-    // if (json['plotId'] != null) {
-    //   plotId = <Null>[];
-    //   json['plotId'].forEach((v) {
-    //     plotId!.add(new Null.fromJson(v));
-    //   });
-    // }
+    if (json['plotId'] != null) {
+      plotId = <PlotModel>[];
+      json['plotId'].forEach((v) {
+        plotId!.add(PlotModel.fromJson(v));
+      });
+    }
     paymentOnThatMonth = json['paymentOnThatMonth'];
+    isVerify = json['isVerify'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    data['uniqueId'] = this.uniqueId;
-    data['hash_password'] = this.hashPassword;
-    // if (this.plotId != null) {
-    //   data['plotId'] = this.plotId!.map((v) => v.toJson()).toList();
-    // }
-    data['paymentOnThatMonth'] = this.paymentOnThatMonth;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
-    return data;
+    oTP = json['OTP'];
+    profilePic = json['profile_pic'];
   }
 }

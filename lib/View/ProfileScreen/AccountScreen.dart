@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:realestate/ViewModel/AuthProvider.dart';
 import 'package:realestate/constants/constants.dart';
 import 'package:sizer/sizer.dart';
 
@@ -40,8 +42,9 @@ class AccountScreen extends StatelessWidget {
               child: TextFormField(
                 style: TextStyle(fontSize: 10.sp),
                 decoration: InputDecoration().copyWith(
-                  labelText: 'Username',
-                  hintText: 'Muhammad Kareem',
+                  labelText:
+                      context.read<LoginProvider>().userObject.data!.name,
+                  hintText: 'Username',
                 ),
               ),
             ),

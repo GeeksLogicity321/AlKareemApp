@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:realestate/Utills/SnackBars.dart';
+import 'package:realestate/ViewModel/AuthProvider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:sizer/sizer.dart';
@@ -31,9 +34,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
     bool authToken = prefs.containsKey('auth_token');
     if (authToken) {
-      await Future.delayed(Duration(seconds: 3));
-      Navigator.pushReplacementNamed(
-          context, BottomNavigationBarWidget.routename);
+      try {
+        await context.read<LoginProvider>().getUser(context);
+        Navigator.pushReplacementNamed(
+            context, BottomNavigationBarWidget.routename);
+      } catch (e) {
+        Navigator.pushReplacementNamed(context, StartScreen.routename);
+        errorSnackbar(context, e.toString());
+      }
+      // context.read<LoginProvider>().getUser(context);
+      // await Future.delayed(Duration(seconds: 3));
     } else {
       await Future.delayed(Duration(seconds: 5));
       Navigator.pushReplacementNamed(context, StartScreen.routename);
@@ -42,25 +52,28 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Image.asset(
-          'Assets/Splash.jpeg',
-          fit: BoxFit.cover,
-        ),
-        // Overlay with opacity
-        Container(
-          color: Colors.black.withOpacity(0.5), // Adjust the opacity as needed
-        ),
+    return Scaffold(
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'Assets/Splash.jpeg',
+            fit: BoxFit.cover,
+          ),
+          // Overlay with opacity
+          Container(
+            color:
+                Colors.black.withOpacity(0.5), // Adjust the opacity as needed
+          ),
 
-        Center(
-            child: Image.asset(
-          'Assets/Logo.png',
-          width: 60.w,
-        )),
-        Positioned(top: 70.h, left: 40.w, child: MySpinningImage()),
-      ],
+          Center(
+              child: Image.asset(
+            'Assets/Logo.png',
+            width: 60.w,
+          )),
+          Positioned(top: 70.h, left: 40.w, child: MySpinningImage()),
+        ],
+      ),
     );
   }
 }

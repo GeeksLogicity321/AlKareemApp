@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:realestate/View/BottomNavigationBar.dart';
+import 'package:realestate/View/OTP_Screen.dart';
 import 'package:realestate/ViewModel/AuthProvider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -133,12 +134,30 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (await context
                                 .read<LoginProvider>()
                                 .login(context)) {
-                              Navigator.pushReplacementNamed(
-                                  context, BottomNavigationBarWidget.routename);
+                              FocusScope.of(context).unfocus();
+                              if (context
+                                      .read<LoginProvider>()
+                                      .userObject
+                                      .data!
+                                      .isVerify !=
+                                  null) {
+                                if (context
+                                        .read<LoginProvider>()
+                                        .userObject
+                                        .data!
+                                        .isVerify ==
+                                    true) {
+                                  Navigator.pushReplacementNamed(context,
+                                      BottomNavigationBarWidget.routename);
+                                } else {
+                                  Navigator.pushReplacementNamed(
+                                      context, OtpScreen.routeName);
+                                }
+                              }
                             }
                           }
                         },
-                        child: context.read<LoginProvider>().isLoading
+                        child: context.watch<LoginProvider>().isLoading
                             ? CircularProgressIndicator(
                                 color: Colors.white,
                               )
@@ -151,30 +170,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: 6.h,
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     Text(
-                    //       "Don’t have an account? ",
-                    //       style: TextStyle(
-                    //         color: kTextWhiteColor,
-                    //         fontSize: 12.sp,
-                    //       ),
-                    //     ),
-                    //     GestureDetector(
-                    //       onTap: () {},
-                    //       child: Text(
-                    //         "Signup",
-                    //         style: TextStyle(
-                    //           color: kPrimaryColor,
-                    //           fontSize: 12.sp,
-                    //           fontWeight: FontWeight.bold,
-                    //           decoration: TextDecoration.underline,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // )
                   ],
                 ),
               ),

@@ -8,7 +8,7 @@ import 'package:realestate/Utills/SnackBars.dart';
 
 import '../constants/ApiConstants.dart';
 
-class LoginProvider extends ChangeNotifier {
+class Installmentprovider extends ChangeNotifier {
   String _uniqueId = '';
   String _password = '';
 
@@ -23,11 +23,6 @@ class LoginProvider extends ChangeNotifier {
 
   void setUniqueId(String value) {
     _uniqueId = value;
-    notifyListeners();
-  }
-
-  void setUserObject(UserModel object) {
-    _userObject = object;
     notifyListeners();
   }
 
@@ -52,11 +47,10 @@ class LoginProvider extends ChangeNotifier {
       );
 
       if (response.statusCode == 200) {
+        _isLoading = true;
         final Map<String, dynamic> jsonResponse = json.decode(response.body);
-        _userObject = UserModel.fromJson(jsonResponse);
-        _userObject.data!.isVerify!
-            ? SetAuthTocken(jsonResponse['Token'], _userObject.data!.sId!)
-            : null;
+        _userObject = UserModel.fromJson(jsonResponse['data']);
+        SetAuthTocken(jsonResponse['Token'], _userObject.data!.sId!);
         _isLoading = false;
         notifyListeners();
 
@@ -78,7 +72,7 @@ class LoginProvider extends ChangeNotifier {
     }
   }
 
-  Future<bool> getUser(BuildContext context) async {
+  Future<void> getUser(BuildContext context) async {
     _isLoading = true;
     notifyListeners();
     Map<String, String> headers = {'Content-Type': 'application/json'};
@@ -86,7 +80,7 @@ class LoginProvider extends ChangeNotifier {
     try {
       final Uri url = Uri.parse(ApiConstants.userOne + userId!);
 
-      final response = await http.get(
+      final response = await http.post(
         url,
         headers: headers,
       );
@@ -98,19 +92,15 @@ class LoginProvider extends ChangeNotifier {
 
         _isLoading = false;
         notifyListeners();
-        return true;
       } else {
         _isLoading = false;
         notifyListeners();
-        throw Exception('Could not Load User');
-
-        // errorSnackbar(context, 'Could not load user');
+        errorSnackbar(context, 'Could not load user');
       }
     } catch (e) {
       _isLoading = false;
       notifyListeners();
       errorSnackbar(context, 'loading user Error' + e.toString());
-      throw e;
     }
   }
 }
