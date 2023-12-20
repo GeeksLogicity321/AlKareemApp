@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:realestate/ViewModel/CatagoryProvider.dart';
 import 'Routes.dart';
 import 'View/SplashScreen/SplashScreen.dart';
 import 'ViewModel/AuthProvider.dart';
@@ -20,8 +21,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, device) {
-      return ChangeNotifierProvider(
-        create: (context) => LoginProvider(),
+      return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => LoginProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => CatagoryProvider(),
+          ),
+          // ChangeNotifierProvider(
+          //   create: (context) => (),
+          // )
+        ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: CustomTheme().lightTheme,

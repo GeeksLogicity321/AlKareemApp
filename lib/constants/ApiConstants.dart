@@ -6,4 +6,6 @@ class ApiConstants {
   static const otp = '${baseURL}/user/otp/';
   static const userOne = '${baseURL}/user/one/';
   static const uploadPic = '${baseURL}/user/profilePic';
+  static const catagory = '${baseURL}/getFormCategory';
+  static const forms = '${baseURL}/getForm/';
 }

@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlKareenFacilitiesScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/ComplaintsScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/FormsScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/GalleryScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/MapsScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/WaterBillScreen.dart';
 import 'package:realestate/View/PropertyDetailScreen.dart';
 import 'package:realestate/ViewModel/AuthProvider.dart';
+import 'package:realestate/ViewModel/CatagoryProvider.dart';
 import 'package:realestate/constants/constants.dart';
 import 'package:sizer/sizer.dart';
 
@@ -13,9 +21,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffECF9F0),
       appBar: AppBar(
-        backgroundColor: Color(0xffECF9F0),
         leading: CircleAvatar(
           backgroundColor: kPrimaryColor,
         ),
@@ -35,7 +41,6 @@ class HomeScreen extends StatelessWidget {
           Badge(
               child: Icon(
             Icons.notifications_none,
-            color: Colors.black,
           )),
           SizedBox(
             width: 2.w,
@@ -130,29 +135,88 @@ class HomeScreen extends StatelessWidget {
                   spacing: 6.w,
                   runSpacing: 3.h,
                   children: [
-                    HomeFeaturedWidget(
-                      imagePath: 'Assets/emailIcon.png',
-                      title: 'AlKareem\nfacility',
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const FacilitiesScreen()),
+                        );
+                      },
+                      child: HomeFeaturedWidget(
+                        imagePath: 'Assets/emailIcon.png',
+                        title: 'AlKareem\nfacility',
+                      ),
                     ),
-                    HomeFeaturedWidget(
-                      imagePath: 'Assets/form.png',
-                      title: 'Forms',
+                    InkWell(
+                      onTap: () {
+                        context.read<CatagoryProvider>().catagory.isEmpty
+                            ? context
+                                .read<CatagoryProvider>()
+                                .fetchCatagory(context)
+                            : null;
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const FormsScreen()),
+                        );
+                      },
+                      child: HomeFeaturedWidget(
+                        imagePath: 'Assets/form.png',
+                        title: 'Forms',
+                      ),
                     ),
-                    HomeFeaturedWidget(
-                      imagePath: 'Assets/Map.png',
-                      title: 'Maps',
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MapsScreen()),
+                        );
+                      },
+                      child: HomeFeaturedWidget(
+                        imagePath: 'Assets/Map.png',
+                        title: 'Maps',
+                      ),
                     ),
-                    HomeFeaturedWidget(
-                      imagePath: 'Assets/gallery.png',
-                      title: 'Gallery',
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const GalleryScreen()),
+                        );
+                      },
+                      child: HomeFeaturedWidget(
+                        imagePath: 'Assets/gallery.png',
+                        title: 'Gallery',
+                      ),
                     ),
-                    HomeFeaturedWidget(
-                      imagePath: 'Assets/Complaints.png',
-                      title: 'Complaints',
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ComplaintsScreen()),
+                        );
+                      },
+                      child: HomeFeaturedWidget(
+                        imagePath: 'Assets/Complaints.png',
+                        title: 'Complaints',
+                      ),
                     ),
-                    HomeFeaturedWidget(
-                      imagePath: 'Assets/WaterBill.png',
-                      title: 'Water Bill',
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const WaterBillScreen()),
+                        );
+                      },
+                      child: HomeFeaturedWidget(
+                        imagePath: 'Assets/WaterBill.png',
+                        title: 'Water Bill',
+                      ),
                     ),
                   ],
                 ),

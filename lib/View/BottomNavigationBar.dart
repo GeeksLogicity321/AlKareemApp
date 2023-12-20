@@ -17,7 +17,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
       screens: [
         // Define your screens here
         HomeScreen(),
-        // InstallMentsScreen(),
+        InstallMentsScreen(),
         PenaltyScreen(),
         ProfileScreen(),
       ],
@@ -29,13 +29,13 @@ class BottomNavigationBarWidget extends StatelessWidget {
           activeColorPrimary: kPrimaryColor,
           inactiveColorPrimary: Colors.grey,
         ),
-        // PersistentBottomNavBarItem(
-        //   icon: Image.asset('Assets/image 6.png'),
-        //   activeColorSecondary: Colors.white,
-        //   title: 'Installments',
-        //   activeColorPrimary: kPrimaryColor,
-        //   inactiveColorPrimary: Colors.grey,
-        // ),
+        PersistentBottomNavBarItem(
+          icon: Image.asset('Assets/image 6.png'),
+          activeColorSecondary: Colors.white,
+          title: 'Installments',
+          activeColorPrimary: kPrimaryColor,
+          inactiveColorPrimary: Colors.grey,
+        ),
         PersistentBottomNavBarItem(
           icon: Image.asset('Assets/image 7.png'),
           title: 'Penalty',

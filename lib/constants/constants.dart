@@ -9,6 +9,7 @@ const Color kSecondaryColor = Color.fromRGBO(255, 255, 255, 1);
 const Color kTextBlackColor = Color(0xFF313131);
 const Color kTextHintColor = Color.fromARGB(255, 153, 152, 152);
 const Color kCardColor = Color(0xFFf4f7fe);
+const Color kScaffoldBackgroundColor = Color(0xffECF9F0);
 const Color kTextWhiteColor = Color(0xFFFFFFFF);
 const Color kContainerColor = Color(0xFFFFDADA);
 const Color kOtherColor = kPrimaryColor;

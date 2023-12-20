@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlKareenFacilitiesScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/ComplaintsScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/FormsScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/GalleryScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/MapsScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/WaterBillScreen.dart';
 import 'View/OTP_Screen.dart';
 
 import 'View/BottomNavigationBar.dart';
@@ -28,4 +34,10 @@ Map<String, WidgetBuilder> namedRoutes = {
   CustomerServiceScreen.routename: (context) => CustomerServiceScreen(),
   PropertyDetailScreen.routename: (context) => PropertyDetailScreen(),
   OtpScreen.routeName: (context) => OtpScreen(),
+  FormsScreen.routeName: (context) => FormsScreen(),
+  MapsScreen.routeName: (context) => MapsScreen(),
+  FacilitiesScreen.routeName: (context) => FacilitiesScreen(),
+  GalleryScreen.routeName: (context) => GalleryScreen(),
+  ComplaintsScreen.routeName: (context) => ComplaintsScreen(),
+  WaterBillScreen.routeName: (context) => WaterBillScreen(),
 };

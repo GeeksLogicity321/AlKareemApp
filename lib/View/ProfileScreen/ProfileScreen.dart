@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:realestate/ViewModel/AuthProvider.dart';
 
 import 'package:sizer/sizer.dart';
 
 import '../../Utills/AuthTockenFunctions.dart';
-import '../../Widgets/PhotoWidget.dart';
+
+import '../../ViewModel/AuthProvider.dart';
 import '../../Widgets/ProfileTile.dart';
 import 'AccountScreen.dart';
 import 'HelpCenter.dart';
@@ -21,9 +21,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         leading: Image.asset('Assets/House.png'),
         title: Text(
           'Profile',
@@ -47,17 +45,38 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 height: 2.h,
               ),
-              // InkWell(
-              //     onTap: () {
-              //       // Navigator.pushNamed(context, AccountScreen.routename);
-              //       // Navigator.push(
-              //       //   context,
-              //       //   MaterialPageRoute(
-              //       //       builder: (context) => const AccountScreen()),
-              //       // );
-              //     },
-              //     child: Image.asset('Assets/Group 43.png')),
-              ProfilePhotoWidget(),
+              InkWell(
+                  onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AccountScreen()),
+                      ),
+                  child: context
+                              .read<LoginProvider>()
+                              .userObject
+                              .data!
+                              .profilePic !=
+                          null
+                      ? ClipOval(
+                          child: Image.network(
+                            context
+                                .read<LoginProvider>()
+                                .userObject
+                                .data!
+                                .profilePic!,
+                            width: 40.w,
+                            height: 40.w,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      : CircleAvatar(
+                          radius: 20.w,
+                          backgroundColor: Colors.grey,
+                          child: Icon(
+                            Icons.camera_alt,
+                            size: 10.w,
+                            color: Colors.black,
+                          ))),
               SizedBox(
                 height: 2.h,
               ),
@@ -106,8 +125,7 @@ class ProfileScreen extends StatelessWidget {
                   // Navigator.pushNamed(context, AccountScreen.routename);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const AccountScreen()),
+                    MaterialPageRoute(builder: (context) => AccountScreen()),
                   );
                 },
                 title: 'Profile',

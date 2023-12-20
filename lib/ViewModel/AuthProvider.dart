@@ -94,7 +94,9 @@ class LoginProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
         _isLoading = true;
         final Map<String, dynamic> jsonResponse = json.decode(response.body);
-        _userObject = UserModel.fromJson(jsonResponse['data']);
+        _userObject = UserModel.fromJson(jsonResponse);
+
+        _userObject.token = await loadTocken();
 
         _isLoading = false;
         notifyListeners();

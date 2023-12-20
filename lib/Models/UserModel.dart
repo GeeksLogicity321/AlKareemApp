@@ -12,7 +12,7 @@ class UserModel {
     success = json['success'];
     message = json['message'];
     token = json['Token'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 }
 

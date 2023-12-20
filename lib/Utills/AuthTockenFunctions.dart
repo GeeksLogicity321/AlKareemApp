@@ -34,6 +34,11 @@ Future<String?> loadUserId() async {
   return prefs.getString('userId');
 }
 
+Future<String?> loadTocken() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getString('auth_token');
+}
+
 void deleteAuthTocken(BuildContext context) async {
   successSnackbar(context, 'Logged out Successfully');
   SharedPreferences prefs = await SharedPreferences.getInstance();

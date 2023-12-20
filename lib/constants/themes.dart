@@ -5,7 +5,7 @@ import 'constants.dart';
 
 class CustomTheme {
   var lightTheme = ThemeData.light(useMaterial3: true).copyWith(
-    scaffoldBackgroundColor: kSecondaryColor,
+    scaffoldBackgroundColor: kScaffoldBackgroundColor,
     primaryColor: kPrimaryColor,
     primaryIconTheme: const IconThemeData(color: Colors.white),
 
@@ -30,15 +30,16 @@ class CustomTheme {
           color: kTextWhiteColor, fontSize: 10.sp, fontWeight: FontWeight.w700),
     ),
     appBarTheme: AppBarTheme(
-      backgroundColor: kPrimaryColor,
+      actionsIconTheme: IconThemeData(color: Colors.black),
+      backgroundColor: kScaffoldBackgroundColor,
       centerTitle: false,
       titleTextStyle: TextStyle(
           fontSize: 15.sp,
-          fontWeight: FontWeight.w800,
-          letterSpacing: 2.0,
-          color: kTextWhiteColor),
+          fontWeight: FontWeight.w400,
+          letterSpacing: 1.0,
+          color: kTextBlackColor),
       iconTheme: IconThemeData(
-        color: Colors.white,
+        color: Colors.black,
         size: SizerUtil.deviceType == DeviceType.tablet ? 17.sp : 18.sp,
       ),
       elevation: 0,
