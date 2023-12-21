@@ -3,10 +3,8 @@ import 'package:realestate/View/FeaturedWeidgetScreen/AlKareenFacilitiesScreen.d
 import 'package:realestate/View/FeaturedWeidgetScreen/ComplaintsScreen.dart';
 import 'package:realestate/View/FeaturedWeidgetScreen/FormsScreen.dart';
 import 'package:realestate/View/FeaturedWeidgetScreen/GalleryScreen.dart';
-import 'package:realestate/View/FeaturedWeidgetScreen/MapsScreen.dart';
 import 'package:realestate/View/FeaturedWeidgetScreen/WaterBillScreen.dart';
 import 'View/OTP_Screen.dart';
-
 import 'View/BottomNavigationBar.dart';
 import 'View/LoginScreen.dart';
 import 'View/ProfileScreen/AccountScreen.dart';
@@ -35,7 +33,6 @@ Map<String, WidgetBuilder> namedRoutes = {
   PropertyDetailScreen.routename: (context) => PropertyDetailScreen(),
   OtpScreen.routeName: (context) => OtpScreen(),
   FormsScreen.routeName: (context) => FormsScreen(),
-  MapsScreen.routeName: (context) => MapsScreen(),
   FacilitiesScreen.routeName: (context) => FacilitiesScreen(),
   GalleryScreen.routeName: (context) => GalleryScreen(),
   ComplaintsScreen.routeName: (context) => ComplaintsScreen(),

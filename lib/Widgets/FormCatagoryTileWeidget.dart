@@ -52,3 +52,54 @@ class FormCatagoryWeidget extends StatelessWidget {
     );
   }
 }
+
+class FormTileWeidget extends StatelessWidget {
+  FormTileWeidget({
+    super.key,
+    this.title,
+    required this.fileLink,
+  });
+  String? title;
+  String fileLink;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => FormsScreen3(
+                    fileLink: fileLink,
+                  )),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+        padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(1.w),
+          border: Border.all(color: Colors.black, width: 1.5),
+        ),
+        child: Row(
+          children: [
+            Image.asset(
+              'Assets/pdf.png',
+              height: 4.h,
+            ),
+            SizedBox(
+              width: 2.w,
+            ),
+            Text(
+              title ?? '',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w300),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

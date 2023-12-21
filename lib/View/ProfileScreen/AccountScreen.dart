@@ -60,7 +60,7 @@ class _AccountScreenState extends State<AccountScreen> {
           _image!.path,
         ),
       );
-      print(context.read<LoginProvider>().userObject.token);
+
       request.headers['Authorization'] =
           'Bearer ${context.read<LoginProvider>().userObject.token}';
 
@@ -68,9 +68,10 @@ class _AccountScreenState extends State<AccountScreen> {
         var response = await request.send();
         if (response.statusCode == 200) {
           var responseBody = await response.stream.bytesToString();
+          Map<String, dynamic> jsondecode = jsonDecode(responseBody);
           context
               .read<LoginProvider>()
-              .setUserObject(UserModel.fromJson(json.decode(responseBody)));
+              .setUserImage(jsondecode['data']['profile_pic']);
           successSnackbar(context, 'Image uploaded successfully');
         } else {
           errorSnackbar(context,
@@ -177,9 +178,10 @@ class _AccountScreenState extends State<AccountScreen> {
               width: double.infinity.w,
               child: ElevatedButton(
                 onPressed: () {
-                  _uploadImage();
+                  _image != null ? _uploadImage() : _showOptionsDialog();
                 },
-                child: Text('Update'),
+                child:
+                    _image != null ? Text('Upload Pic') : Text('Take a photo'),
               ),
             ),
             SizedBox(

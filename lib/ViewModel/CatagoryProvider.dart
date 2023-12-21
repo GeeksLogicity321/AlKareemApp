@@ -60,6 +60,7 @@ class CatagoryProvider extends ChangeNotifier {
 
   Future<void> fetchForms(BuildContext context) async {
     _isLoading = true;
+    _form.clear();
     notifyListeners();
     Map<String, String> headers = {'Content-Type': 'application/json'};
     try {

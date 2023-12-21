@@ -31,6 +31,11 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setUserImage(String image) {
+    _userObject.data!.profilePic = image;
+    notifyListeners();
+  }
+
   void setPassword(String value) {
     _password = value;
     notifyListeners();
@@ -52,7 +57,7 @@ class LoginProvider extends ChangeNotifier {
       );
 
       if (response.statusCode == 200) {
-        final Map<String, dynamic> jsonResponse = json.decode(response.body);
+        final jsonResponse = json.decode(response.body);
         _userObject = UserModel.fromJson(jsonResponse);
         _userObject.data!.isVerify!
             ? SetAuthTocken(jsonResponse['Token'], _userObject.data!.sId!)

@@ -31,10 +31,12 @@ class HomeScreen extends StatelessWidget {
               'Welcome to Al Kareem City',
               style: Theme.of(context).textTheme.bodySmall,
             ),
-            Text(
-              context.read<LoginProvider>().userObject.data!.name ?? '',
-              style: Theme.of(context).textTheme.headlineSmall,
-            )
+            Consumer<LoginProvider>(builder: (_, provider, __) {
+              return Text(
+                provider.userObject.data!.name ?? '',
+                style: Theme.of(context).textTheme.headlineSmall,
+              );
+            })
           ],
         ),
         actions: [
@@ -170,8 +172,7 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const MapsScreen()),
+                          MaterialPageRoute(builder: (context) => MapsScreen()),
                         );
                       },
                       child: HomeFeaturedWidget(

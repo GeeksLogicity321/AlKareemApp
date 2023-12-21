@@ -51,40 +51,39 @@ class ProfileScreen extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => AccountScreen()),
                       ),
-                  child: context
-                              .read<LoginProvider>()
-                              .userObject
-                              .data!
-                              .profilePic !=
-                          null
-                      ? ClipOval(
-                          child: Image.network(
-                            context
-                                .read<LoginProvider>()
-                                .userObject
-                                .data!
-                                .profilePic!,
-                            width: 40.w,
-                            height: 40.w,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                      : CircleAvatar(
-                          radius: 20.w,
-                          backgroundColor: Colors.grey,
-                          child: Icon(
-                            Icons.camera_alt,
-                            size: 10.w,
-                            color: Colors.black,
-                          ))),
+                  child: Consumer<LoginProvider>(builder: (_, provider, __) {
+                    return provider.userObject.data!.profilePic != null
+                        ? ClipOval(
+                            child: Image.network(
+                              context
+                                  .read<LoginProvider>()
+                                  .userObject
+                                  .data!
+                                  .profilePic!,
+                              width: 40.w,
+                              height: 40.w,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : CircleAvatar(
+                            radius: 20.w,
+                            backgroundColor: Colors.grey,
+                            child: Icon(
+                              Icons.camera_alt,
+                              size: 10.w,
+                              color: Colors.black,
+                            ));
+                  })),
               SizedBox(
                 height: 2.h,
               ),
-              Text(
-                context.read<LoginProvider>().userObject.data!.name ?? '',
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
-              ),
+              Consumer<LoginProvider>(builder: (_, provider, __) {
+                return Text(
+                  provider.userObject.data!.name ?? '',
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.w500),
+                );
+              }),
               SizedBox(
                 height: 2.h,
               ),

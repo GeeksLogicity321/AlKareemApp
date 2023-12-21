@@ -52,7 +52,7 @@ class Data {
     if (json['plotId'] != null) {
       plotId = <PlotModel>[];
       json['plotId'].forEach((v) {
-        plotId!.add(PlotModel.fromJson(v));
+        Null;
       });
     }
     paymentOnThatMonth = json['paymentOnThatMonth'];

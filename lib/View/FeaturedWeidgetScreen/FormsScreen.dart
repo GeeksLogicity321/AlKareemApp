@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:realestate/ViewModel/CatagoryProvider.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../../Widgets/FormCatagoryTileWeidget.dart';
 
@@ -50,10 +51,31 @@ class FormsScreen2 extends StatelessWidget {
               : ListView.builder(
                   itemCount: catagoryProvider.getForm.length,
                   itemBuilder: (context, index) {
-                    return FormCatagoryWeidget(
-                        id: catagoryProvider.getForm[index].name!,
+                    return FormTileWeidget(
+                        fileLink: catagoryProvider.getForm[index].fileUrl!,
                         title: catagoryProvider.getForm[index].name!);
                   });
         }));
+  }
+}
+
+class FormsScreen3 extends StatelessWidget {
+  FormsScreen3({super.key, required this.fileLink});
+  static const routeName = "FormsScreen3";
+
+  String fileLink;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Forms',
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        body: Container(
+          child: SfPdfViewer.network(fileLink),
+        ));
   }
 }
