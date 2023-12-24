@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:realestate/View/HomeScreen.dart';
-import 'package:realestate/View/InstallMentsScreen.dart';
+import 'package:realestate/View/InstallMentScreens/InstallMentsScreen.dart';
 import 'package:realestate/View/PenaltyScreen.dart';
 import 'package:realestate/View/ProfileScreen/ProfileScreen.dart';
 import 'package:realestate/constants/constants.dart';

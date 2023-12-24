@@ -1,13 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
-
-import '../../Models/UserModel.dart';
 import '../../Utills/SnackBars.dart';
 import '../../ViewModel/AuthProvider.dart';
 
@@ -48,7 +45,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
   Future<void> _uploadImage() async {
     if (_image != null) {
-      Map<String, String> headers = {'Content-Type': 'application/json'};
+      // Map<String, String> headers = {'Content-Type': 'application/json'};
       var request = http.MultipartRequest(
         'POST',
         Uri.parse(ApiConstants.uploadPic),

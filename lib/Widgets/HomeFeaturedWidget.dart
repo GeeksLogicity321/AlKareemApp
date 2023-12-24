@@ -9,9 +9,9 @@ class HomeFeaturedWidget extends StatelessWidget {
     this.subtitle,
   });
 
-  String imagePath;
-  String title;
-  String? subtitle;
+  final String imagePath;
+  final String title;
+  final String? subtitle;
 
   @override
   Widget build(BuildContext context) {

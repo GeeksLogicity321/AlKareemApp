@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:realestate/Utills/SnackBars.dart';
 import 'package:realestate/ViewModel/AuthProvider.dart';
+import 'package:realestate/ViewModel/UserPaymentProvider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:sizer/sizer.dart';
@@ -36,6 +37,8 @@ class _SplashScreenState extends State<SplashScreen> {
     if (authToken) {
       try {
         await context.read<LoginProvider>().getUser(context);
+        context.read<UserPaymentProvider>().setSeclected(
+            context, context.read<LoginProvider>().userObject.data!.sId!);
         Navigator.pushReplacementNamed(
             context, BottomNavigationBarWidget.routename);
       } catch (e) {

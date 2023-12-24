@@ -1,11 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart' as http;
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 import 'package:realestate/View/BottomNavigationBar.dart';
@@ -15,6 +11,7 @@ import 'package:sizer/sizer.dart';
 
 import '../Utills/AuthTockenFunctions.dart';
 import '../Utills/SnackBars.dart';
+import '../ViewModel/UserPaymentProvider.dart';
 import '../constants/ApiConstants.dart';
 
 // import 'package:firebase_auth/firebase_auth.dart';
@@ -146,6 +143,7 @@ class OtpScreen extends StatelessWidget {
     } else {
       return 'Please Enter OTP';
     }
+    return null;
   }
 
   Future<void> verifyOtp(BuildContext context) async {
@@ -166,6 +164,8 @@ class OtpScreen extends StatelessWidget {
         successSnackbar(context, 'OTP varification Successfull');
         SetAuthTocken(jsonResponse['Token'],
             context.read<LoginProvider>().userObject.data!.sId!);
+        context.read<UserPaymentProvider>().setSeclected(
+            context, context.read<LoginProvider>().userObject.data!.sId!);
         Navigator.pushReplacementNamed(
             context, BottomNavigationBarWidget.routename);
       } else {

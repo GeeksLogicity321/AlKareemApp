@@ -4,6 +4,7 @@ import 'package:realestate/ViewModel/CatagoryProvider.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../../Widgets/FormCatagoryTileWeidget.dart';
+import '../../Widgets/PdfDownloadButton.dart';
 
 class FormsScreen extends StatelessWidget {
   const FormsScreen({super.key});
@@ -60,19 +61,29 @@ class FormsScreen2 extends StatelessWidget {
 }
 
 class FormsScreen3 extends StatelessWidget {
-  FormsScreen3({super.key, required this.fileLink});
+  FormsScreen3({super.key, this.name, required this.fileLink});
   static const routeName = "FormsScreen3";
 
-  String fileLink;
+  final String fileLink;
+  final String? name;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
+          actionsIconTheme: IconThemeData(color: Colors.white),
           title: Text(
-            'Forms',
-            style: TextStyle(color: Colors.black),
+            'PDF Viewer',
+            style: TextStyle(color: Colors.white),
           ),
+          backgroundColor: Colors.red,
+          actions: [
+            PdfDownloadButton(
+              url: fileLink,
+              name: name,
+            )
+          ],
         ),
         body: Container(
           child: SfPdfViewer.network(fileLink),

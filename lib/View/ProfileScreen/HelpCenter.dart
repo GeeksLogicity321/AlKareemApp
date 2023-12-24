@@ -104,9 +104,9 @@ class ContactUsTab extends StatelessWidget {
 
 class HelpCenterTile extends StatelessWidget {
   HelpCenterTile({super.key, this.icon, required this.title, this.image});
-  IconData? icon;
-  String title;
-  String? image;
+  final IconData? icon;
+  final String title;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {

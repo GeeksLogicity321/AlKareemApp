@@ -5,6 +5,7 @@ import 'package:realestate/ViewModel/CatagoryProvider.dart';
 import 'Routes.dart';
 import 'View/SplashScreen/SplashScreen.dart';
 import 'ViewModel/AuthProvider.dart';
+import 'ViewModel/UserPaymentProvider.dart';
 import 'constants/themes.dart';
 import 'package:sizer/sizer.dart';
 
@@ -29,9 +30,9 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (context) => CatagoryProvider(),
           ),
-          // ChangeNotifierProvider(
-          //   create: (context) => (),
-          // )
+          ChangeNotifierProvider(
+            create: (context) => UserPaymentProvider(),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

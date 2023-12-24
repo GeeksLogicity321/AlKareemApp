@@ -6,8 +6,8 @@ import '../constants/constants.dart';
 class InstallmentWidget extends StatelessWidget {
   InstallmentWidget({super.key, required this.title, required this.amount});
 
-  String title;
-  List<String> amount;
+  final String title;
+  final List<String> amount;
 
   @override
   Widget build(BuildContext context) {

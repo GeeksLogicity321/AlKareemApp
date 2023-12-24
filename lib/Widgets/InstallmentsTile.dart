@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:intl/intl.dart';
 
 class InstallmentsTile extends StatelessWidget {
   InstallmentsTile({
     super.key,
     required this.plotNumber,
     required this.amount,
-    required this.blockName,
+    required this.dueDate,
+    required this.installmentNumber,
   });
-  String plotNumber;
-  String blockName;
-  int amount;
+  final String plotNumber;
+  final int installmentNumber;
+  final int amount;
+  final String dueDate;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +34,13 @@ class InstallmentsTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              blockName,
+              'Installment No# ${installmentNumber.toString()}',
               style: TextStyle(
                 fontSize: 13.sp,
               ),
             ),
             Text(
-              'Date   |   15-Dec-2023',
+              DateFormat("dd-MMM-yyyy").format(DateTime.parse(dueDate)),
               style: TextStyle(
                   fontSize: 13.sp,
                   color: Colors.grey,
@@ -66,6 +69,45 @@ class InstallmentsTile extends StatelessWidget {
                       ))),
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class InactiveInstallmentsTile extends StatelessWidget {
+  InactiveInstallmentsTile(
+      {super.key, required this.plotNumber, required this.message});
+  final String plotNumber;
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: 2.h),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.green,
+          child: Image.asset('Assets/image 21.png'),
+        ),
+        title: Text(
+          'Plot No. #  $plotNumber',
+          style: TextStyle(
+            fontSize: 13.sp,
+          ),
+        ),
+        subtitle: Text(
+          message,
+          style: TextStyle(
+            fontSize: 13.sp,
+          ),
+        ),
+        trailing: Text(
+          'Paid',
+          style: TextStyle(
+            color: Colors.green,
+            fontSize: 13.sp,
+          ),
         ),
       ),
     );

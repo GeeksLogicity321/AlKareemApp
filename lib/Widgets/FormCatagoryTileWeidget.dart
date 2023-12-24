@@ -10,8 +10,8 @@ class FormCatagoryWeidget extends StatelessWidget {
     this.title,
     required this.id,
   });
-  String? title;
-  String id;
+  final String? title;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +59,8 @@ class FormTileWeidget extends StatelessWidget {
     this.title,
     required this.fileLink,
   });
-  String? title;
-  String fileLink;
+  final String? title;
+  final String fileLink;
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +70,7 @@ class FormTileWeidget extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (context) => FormsScreen3(
+                    name: title,
                     fileLink: fileLink,
                   )),
         );

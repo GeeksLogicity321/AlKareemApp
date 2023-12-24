@@ -9,8 +9,8 @@ class DetailsWeidget extends StatelessWidget {
     required this.text,
   });
 
-  IconData icon;
-  String text;
+  final IconData icon;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +40,8 @@ class ImportantNotesWidget extends StatelessWidget {
     required this.text,
   });
 
-  IconData icon;
-  String text;
+  final IconData icon;
+  final String text;
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:realestate/View/FeaturedWeidgetScreen/AlKareenFacilitiesScreen.dart';
 import 'package:realestate/View/FeaturedWeidgetScreen/ComplaintsScreen.dart';
@@ -10,10 +9,10 @@ import 'package:realestate/View/FeaturedWeidgetScreen/WaterBillScreen.dart';
 import 'package:realestate/View/PropertyDetailScreen.dart';
 import 'package:realestate/ViewModel/AuthProvider.dart';
 import 'package:realestate/ViewModel/CatagoryProvider.dart';
-import 'package:realestate/constants/constants.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Widgets/HomeFeaturedWidget.dart';
+import '../Widgets/PageViewWidget.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -22,8 +21,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: CircleAvatar(
-          backgroundColor: kPrimaryColor,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Consumer<LoginProvider>(builder: (_, provider, __) {
+            return provider.userObject.data!.profilePic == null
+                ? Icon(Icons.person)
+                : Image.network(provider.userObject.data!.profilePic!);
+          }),
         ),
         title: Column(
           children: [
@@ -55,73 +59,16 @@ class HomeScreen extends StatelessWidget {
           children: [
             SizedBox(
               height: 30.h,
-              child: PageView.builder(
-                  controller: PageController(viewportFraction: 0.6),
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PropertyDetailScreen()),
-                        );
-                        // Navigator.pushNamed(context, PropertyDetailScreen.routename);
-                      },
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: 50.w,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: const AssetImage(
-                                        'Assets/unsplash_hHz4yrvxwlA.png'))),
-                            child: Align(
-                              alignment: Alignment(-0.1.w, 0.6),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Block Malik',
-                                    style: TextStyle(
-                                        fontSize: 13.sp,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    '120 sq. yards',
-                                    style: TextStyle(
-                                      fontSize: 10.sp,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Text(
-                                    'West Open',
-                                    style: TextStyle(
-                                      fontSize: 10.sp,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 1.h,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                              bottom: 1.h,
-                              right: 15.w,
-                              child: Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                              ))
-                        ],
-                      ),
-                    );
-                  }),
+              child: Consumer<LoginProvider>(builder: (_, provider, __) {
+                return PageView.builder(
+                    controller: PageController(viewportFraction: 0.6),
+                    itemCount: provider.userObject.data!.planId!.length,
+                    itemBuilder: (context, index) {
+                      return PageViewWidget(
+                        planIdObject: provider.userObject.data!.planId![index],
+                      );
+                    });
+              }),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),

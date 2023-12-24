@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:realestate/ViewModel/AuthProvider.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../Models/PlanIdModel.dart';
 import '../Widgets/DetailsWidget.dart';
 import '../Widgets/InstallMentWidget.dart';
 import '../constants/constants.dart';
 
 class PropertyDetailScreen extends StatelessWidget {
-  PropertyDetailScreen({super.key});
+  PropertyDetailScreen({super.key, required this.plainIdObject});
+
+  PlanId plainIdObject;
+
   static const routename = 'PropertyDetailScreen';
 
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +51,16 @@ class PropertyDetailScreen extends StatelessWidget {
                                     bottom: 8.h,
                                     left: 6.w,
                                     child: Text(
-                                      'Block Malik',
+                                      plainIdObject
+                                          .plotId!.blockNumber!.blockName!,
                                       style: TextStyle(
                                           fontSize: 18.sp, color: Colors.white),
                                     )),
                                 Positioned(
                                     bottom: 5.h,
                                     left: 6.w,
-                                    child: Text('Plot No. # 134',
+                                    child: Text(
+                                        'Plot No. # ${plainIdObject.plotNumber}',
                                         style: TextStyle(
                                             fontSize: 10.sp,
                                             color: Colors.white,
@@ -82,9 +90,15 @@ class PropertyDetailScreen extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Image.asset(
-                        'Assets/Group 43.png',
-                        height: 8.h,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:
+                            Consumer<LoginProvider>(builder: (_, provider, __) {
+                          return provider.userObject.data!.profilePic == null
+                              ? Icon(Icons.person)
+                              : Image.network(
+                                  provider.userObject.data!.profilePic!);
+                        }),
                       ),
                       SizedBox(
                         width: 2.w,
@@ -92,11 +106,14 @@ class PropertyDetailScreen extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Muhammad Kareem',
-                              style: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400)),
+                          Consumer<LoginProvider>(
+                              builder: (_, loginProvider, __) {
+                            return Text(loginProvider.userObject.data!.name!,
+                                style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400));
+                          }),
                           Text('Owner',
                               style: TextStyle(
                                   fontSize: 10.sp,
@@ -193,7 +210,8 @@ class PropertyDetailScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: Center(
-                          child: Text('120 sq. Yrds.',
+                          child: Text(
+                              '${plainIdObject.plotId!.sqYard ?? ''} sq. Yrds.',
                               style: TextStyle(
                                   fontSize: 10.sp,
                                   color: Colors.white,
@@ -242,11 +260,14 @@ class PropertyDetailScreen extends StatelessWidget {
                     children: [
                       InstallmentWidget(
                         title: 'On Booking',
-                        amount: ['500,000'],
+                        amount: [plainIdObject.bookingAmount.toString()],
                       ),
                       InstallmentWidget(
                         title: '60 Monthly Installments',
-                        amount: ['15000x60', '900,000'],
+                        amount: [
+                          plainIdObject.instalmentAmount.toString(),
+                          '900,000'
+                        ],
                       ),
                       InstallmentWidget(
                         title: 'Demarcation of plot',
