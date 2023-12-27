@@ -96,8 +96,14 @@ class PropertyDetailScreen extends StatelessWidget {
                             Consumer<LoginProvider>(builder: (_, provider, __) {
                           return provider.userObject.data!.profilePic == null
                               ? Icon(Icons.person)
-                              : Image.network(
-                                  provider.userObject.data!.profilePic!);
+                              : ClipOval(
+                                  child: Image.network(
+                                    provider.userObject.data!.profilePic!,
+                                    height: 10.w,
+                                    width: 10.w,
+                                    fit: BoxFit.cover,
+                                  ),
+                                );
                         }),
                       ),
                       SizedBox(
@@ -154,28 +160,36 @@ class PropertyDetailScreen extends StatelessWidget {
                   child: Wrap(
                     spacing: 10.w,
                     runSpacing: 2.h,
-                    children: [
-                      DetailsWeidget(
-                        icon: Icons.location_on,
-                        text: 'Karachi',
-                      ),
-                      DetailsWeidget(
-                        icon: Icons.location_searching_sharp,
-                        text: 'West Open',
-                      ),
-                      DetailsWeidget(
-                        icon: Icons.expand,
-                        text: '120 sq. yards',
-                      ),
-                      DetailsWeidget(
-                        icon: Icons.landscape,
-                        text: 'Extra Land 10 sq. yards',
-                      ),
-                      DetailsWeidget(
-                        icon: Icons.flag,
-                        text: 'Corner Plot',
-                      ),
-                    ],
+                    children:
+                        // DetailsWeidget(
+                        //   icon: Icons.location_on,
+                        //   text: 'Karachi',
+                        // ),
+                        // DetailsWeidget(
+                        //   icon: Icons.location_searching_sharp,
+                        //   text: 'West Open',
+                        // ),
+                        // DetailsWeidget(
+                        //   icon: Icons.expand,
+                        //   text: '120 sq. yards',
+                        // ),
+                        // DetailsWeidget(
+                        //   icon: Icons.landscape,
+                        //   text: 'Extra Land 10 sq. yards',
+                        // ),
+                        // DetailsWeidget(
+                        //   icon: Icons.flag,
+                        //   text: 'Corner Plot',
+                        // ),
+                        plainIdObject.plotId!.details!
+                            .split(',')
+                            .map((word) => word.trim())
+                            .where((word) => word.isNotEmpty)
+                            .map((word) => DetailsWeidget(
+                                  icon: Icons.location_on,
+                                  text: word,
+                                ))
+                            .toList(),
                   ),
                 ),
                 Padding(
@@ -266,20 +280,21 @@ class PropertyDetailScreen extends StatelessWidget {
                         title: '60 Monthly Installments',
                         amount: [
                           plainIdObject.instalmentAmount.toString(),
-                          '900,000'
                         ],
                       ),
                       InstallmentWidget(
                         title: 'Demarcation of plot',
-                        amount: ['500,000x10', '500,000'],
+                        amount: [''],
                       ),
                       InstallmentWidget(
-                        title: 'Demarcation of plot',
-                        amount: ['100,000'],
+                        title: 'Extra Payment Amount',
+                        amount: [
+                          plainIdObject.extraPaymentAmount.toString(),
+                        ],
                       ),
                       InstallmentWidget(
                         title: 'Before Possession',
-                        amount: ['100,000'],
+                        amount: [plainIdObject.possessionAmount.toString()],
                       ),
                     ],
                   ),
@@ -304,7 +319,7 @@ class PropertyDetailScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: Center(
-                          child: Text('2,100,000',
+                          child: Text(plainIdObject.totalAmount.toString(),
                               style: TextStyle(
                                   fontSize: 13.sp,
                                   color: Colors.white,
@@ -342,35 +357,35 @@ class PropertyDetailScreen extends StatelessWidget {
                         color: Colors.black,
                       )),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 2.h, left: 4.w, bottom: 1.h),
-                  child: Text('Extra Charges',
-                      style: TextStyle(
-                          fontSize: 15.sp,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500)),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 4.w, bottom: 1.h),
-                  child: Wrap(
-                    spacing: 2.w,
-                    runSpacing: 1.h,
-                    children: [
-                      ImportantNotesWidget(
-                        icon: Icons.check_box,
-                        text: 'corner 10%',
-                      ),
-                      ImportantNotesWidget(
-                        icon: Icons.check_box,
-                        text: 'west open 5%',
-                      ),
-                      ImportantNotesWidget(
-                        icon: Icons.check_box,
-                        text: 'park facing 5%',
-                      ),
-                    ],
-                  ),
-                ),
+                // Padding(
+                //   padding: EdgeInsets.only(top: 2.h, left: 4.w, bottom: 1.h),
+                //   child: Text('Extra Charges',
+                //       style: TextStyle(
+                //           fontSize: 15.sp,
+                //           color: Colors.black,
+                //           fontWeight: FontWeight.w500)),
+                // ),
+                // Padding(
+                //   padding: EdgeInsets.only(left: 4.w, bottom: 1.h),
+                //   child: Wrap(
+                //     spacing: 2.w,
+                //     runSpacing: 1.h,
+                //     children: [
+                //       ImportantNotesWidget(
+                //         icon: Icons.check_box,
+                //         text: 'corner 10%',
+                //       ),
+                //       ImportantNotesWidget(
+                //         icon: Icons.check_box,
+                //         text: 'west open 5%',
+                //       ),
+                //       ImportantNotesWidget(
+                //         icon: Icons.check_box,
+                //         text: 'park facing 5%',
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 Padding(
                   padding: EdgeInsets.only(top: 2.h, left: 4.w, bottom: 1.h),
                   child: Text('Installment Remaining',
@@ -379,263 +394,264 @@ class PropertyDetailScreen extends StatelessWidget {
                           color: Colors.black,
                           fontWeight: FontWeight.w500)),
                 ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: 2.h,
-                    left: 4.w,
-                    right: 4.w,
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 75, 75, 75),
-                      borderRadius: BorderRadius.circular(6.w)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Center(
-                          child: Text('Total Installments',
-                              style: TextStyle(
-                                  fontSize: 8.sp,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text('Paid',
-                              style: TextStyle(
-                                  fontSize: 8.sp,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text('Remaining',
-                              style: TextStyle(
-                                  fontSize: 8.sp,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text('Upcomming',
-                              style: TextStyle(
-                                  fontSize: 8.sp,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Center(
-                        child: Text('60',
-                            style: TextStyle(
-                                fontSize: 8.sp,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500)),
-                      ),
-                    ),
-                    Container(
-                      color: kPrimaryColor,
-                      height: 2.h,
-                      width: 0.2.w,
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Center(
-                        child: Text('50',
-                            style: TextStyle(
-                                fontSize: 8.sp,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500)),
-                      ),
-                    ),
-                    Container(
-                      color: kPrimaryColor,
-                      height: 2.h,
-                      width: 0.2.w,
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Center(
-                        child: Text('45',
-                            style: TextStyle(
-                                fontSize: 8.sp,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500)),
-                      ),
-                    ),
-                    Container(
-                      color: kPrimaryColor,
-                      height: 2.h,
-                      width: 0.2.w,
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Center(
-                        child: Text('(1-dec-023)',
-                            style: TextStyle(
-                                fontSize: 8.sp,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500)),
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    left: 4.w,
-                    right: 4.w,
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 1,
-                          color: const Color.fromARGB(255, 75, 75, 75)),
-                      borderRadius: BorderRadius.circular(6.w)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Center(
-                          child: Text('Total Amount',
-                              style: TextStyle(
-                                  fontSize: 8.sp,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text('Paid',
-                              style: TextStyle(
-                                  fontSize: 8.sp,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text('Remaining',
-                              style: TextStyle(
-                                  fontSize: 8.sp,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Center(
-                          child: Text('2,100,000',
-                              style: TextStyle(
-                                  fontSize: 8.sp,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                      ),
-                      Container(
-                        color: kPrimaryColor,
-                        height: 2.h,
-                        width: 0.2.w,
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text('700,000',
-                              style: TextStyle(
-                                  fontSize: 8.sp,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                      ),
-                      Container(
-                        color: kPrimaryColor,
-                        height: 2.h,
-                        width: 0.2.w,
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text('1400,000',
-                              style: TextStyle(
-                                  fontSize: 8.sp,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    left: 4.w,
-                    right: 4.w,
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-                  decoration: BoxDecoration(
-                      color: Colors.green[800],
-                      borderRadius: BorderRadius.circular(6.w)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Center(
-                          child: Text('Residential Plots',
-                              style: TextStyle(
-                                  fontSize: 10.sp,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text('120 sq. Yrds.',
-                              style: TextStyle(
-                                  fontSize: 10.sp,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 4.w),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                          backgroundColor: kPrimaryColor,
-                          child: Center(
-                            child: Icon(
-                              Icons.priority_high_outlined,
-                              color: Colors.white,
-                            ),
-                          )),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 2.w),
-                        child: Text(
-                            'Your Upcomming installment worth Rupees 15,000',
-                            style: TextStyle(
-                                fontSize: 8.sp,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500)),
-                      ),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   margin: EdgeInsets.only(
+                //     top: 2.h,
+                //     left: 4.w,
+                //     right: 4.w,
+                //   ),
+                //   padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+                //   decoration: BoxDecoration(
+                //       color: const Color.fromARGB(255, 75, 75, 75),
+                //       borderRadius: BorderRadius.circular(6.w)),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Expanded(
+                //         child: Center(
+                //           child: Text('Total Installments',
+                //               style: TextStyle(
+                //                   fontSize: 8.sp,
+                //                   color: Colors.white,
+                //                   fontWeight: FontWeight.w500)),
+                //         ),
+                //       ),
+                //       Expanded(
+                //         child: Center(
+                //           child: Text('Paid',
+                //               style: TextStyle(
+                //                   fontSize: 8.sp,
+                //                   color: Colors.white,
+                //                   fontWeight: FontWeight.w500)),
+                //         ),
+                //       ),
+                //       Expanded(
+                //         child: Center(
+                //           child: Text('Remaining',
+                //               style: TextStyle(
+                //                   fontSize: 8.sp,
+                //                   color: Colors.white,
+                //                   fontWeight: FontWeight.w500)),
+                //         ),
+                //       ),
+                //       Expanded(
+                //         child: Center(
+                //           child: Text('Upcomming',
+                //               style: TextStyle(
+                //                   fontSize: 8.sp,
+                //                   color: Colors.white,
+                //                   fontWeight: FontWeight.w500)),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Expanded(
+                //       flex: 3,
+                //       child: Center(
+                //         child: Text('60',
+                //             style: TextStyle(
+                //                 fontSize: 8.sp,
+                //                 color: Colors.black,
+                //                 fontWeight: FontWeight.w500)),
+                //       ),
+                //     ),
+                //     Container(
+                //       color: kPrimaryColor,
+                //       height: 2.h,
+                //       width: 0.2.w,
+                //     ),
+                //     Expanded(
+                //       flex: 2,
+                //       child: Center(
+                //         child: Text('50',
+                //             style: TextStyle(
+                //                 fontSize: 8.sp,
+                //                 color: Colors.black,
+                //                 fontWeight: FontWeight.w500)),
+                //       ),
+                //     ),
+                //     Container(
+                //       color: kPrimaryColor,
+                //       height: 2.h,
+                //       width: 0.2.w,
+                //     ),
+                //     Expanded(
+                //       flex: 2,
+                //       child: Center(
+                //         child: Text('45',
+                //             style: TextStyle(
+                //                 fontSize: 8.sp,
+                //                 color: Colors.black,
+                //                 fontWeight: FontWeight.w500)),
+                //       ),
+                //     ),
+                //     Container(
+                //       color: kPrimaryColor,
+                //       height: 2.h,
+                //       width: 0.2.w,
+                //     ),
+                //     Expanded(
+                //       flex: 3,
+                //       child: Center(
+                //         child: Text('(1-dec-023)',
+                //             style: TextStyle(
+                //                 fontSize: 8.sp,
+                //                 color: Colors.black,
+                //                 fontWeight: FontWeight.w500)),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // Container(
+                //   margin: EdgeInsets.only(
+                //     left: 4.w,
+                //     right: 4.w,
+                //   ),
+                //   padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+                //   decoration: BoxDecoration(
+                //       border: Border.all(
+                //           width: 1,
+                //           color: const Color.fromARGB(255, 75, 75, 75)),
+                //       borderRadius: BorderRadius.circular(6.w)),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Expanded(
+                //         child: Center(
+                //           child: Text('Total Amount',
+                //               style: TextStyle(
+                //                   fontSize: 8.sp,
+                //                   color: Colors.black,
+                //                   fontWeight: FontWeight.w500)),
+                //         ),
+                //       ),
+                //       Expanded(
+                //         child: Center(
+                //           child: Text('Paid',
+                //               style: TextStyle(
+                //                   fontSize: 8.sp,
+                //                   color: Colors.black,
+                //                   fontWeight: FontWeight.w500)),
+                //         ),
+                //       ),
+                //       Expanded(
+                //         child: Center(
+                //           child: Text('Remaining',
+                //               style: TextStyle(
+                //                   fontSize: 8.sp,
+                //                   color: Colors.black,
+                //                   fontWeight: FontWeight.w500)),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // SizedBox(
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Expanded(
+                //         child: Center(
+                //           child: Text('2,100,000',
+                //               style: TextStyle(
+                //                   fontSize: 8.sp,
+                //                   color: Colors.black,
+                //                   fontWeight: FontWeight.w500)),
+                //         ),
+                //       ),
+                //       Container(
+                //         color: kPrimaryColor,
+                //         height: 2.h,
+                //         width: 0.2.w,
+                //       ),
+                //       Expanded(
+                //         child: Center(
+                //           child: Text('700,000',
+                //               style: TextStyle(
+                //                   fontSize: 8.sp,
+                //                   color: Colors.black,
+                //                   fontWeight: FontWeight.w500)),
+                //         ),
+                //       ),
+                //       Container(
+                //         color: kPrimaryColor,
+                //         height: 2.h,
+                //         width: 0.2.w,
+                //       ),
+                //       Expanded(
+                //         child: Center(
+                //           child: Text('1400,000',
+                //               style: TextStyle(
+                //                   fontSize: 8.sp,
+                //                   color: Colors.black,
+                //                   fontWeight: FontWeight.w500)),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // Container(
+                //   margin: EdgeInsets.only(
+                //     left: 4.w,
+                //     right: 4.w,
+                //   ),
+                //   padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+                //   decoration: BoxDecoration(
+                //       color: Colors.green[800],
+                //       borderRadius: BorderRadius.circular(6.w)),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Expanded(
+                //         child: Center(
+                //           child: Text('Residential Plots',
+                //               style: TextStyle(
+                //                   fontSize: 10.sp,
+                //                   color: Colors.white,
+                //                   fontWeight: FontWeight.w500)),
+                //         ),
+                //       ),
+                //       Expanded(
+                //         child: Center(
+                //           child: Text(
+                //               '${plainIdObject.plotId!.sqYard.toString()} sq. Yrds.',
+                //               style: TextStyle(
+                //                   fontSize: 10.sp,
+                //                   color: Colors.white,
+                //                   fontWeight: FontWeight.w500)),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // Padding(
+                //   padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 4.w),
+                //   child: Row(
+                //     children: [
+                //       CircleAvatar(
+                //           backgroundColor: kPrimaryColor,
+                //           child: Center(
+                //             child: Icon(
+                //               Icons.priority_high_outlined,
+                //               color: Colors.white,
+                //             ),
+                //           )),
+                //       Padding(
+                //         padding: EdgeInsets.symmetric(horizontal: 2.w),
+                //         child: Text(
+                //             'Your Upcomming installment worth Rupees 15,000',
+                //             style: TextStyle(
+                //                 fontSize: 8.sp,
+                //                 color: Colors.black,
+                //                 fontWeight: FontWeight.w500)),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 SizedBox(
                   height: 2.h,
                 ),

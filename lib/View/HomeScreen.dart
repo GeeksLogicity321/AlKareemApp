@@ -26,7 +26,13 @@ class HomeScreen extends StatelessWidget {
           child: Consumer<LoginProvider>(builder: (_, provider, __) {
             return provider.userObject.data!.profilePic == null
                 ? Icon(Icons.person)
-                : Image.network(provider.userObject.data!.profilePic!);
+                : ClipOval(
+                    child: Image.network(
+                    provider.userObject.data!.profilePic!,
+                    height: 6.w,
+                    width: 6.w,
+                    fit: BoxFit.cover,
+                  ));
           }),
         ),
         title: Column(

@@ -11,14 +11,6 @@ class PlanIdModel {
       });
     }
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.planId != null) {
-      data['planId'] = this.planId!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
 }
 
 class PlanId {
@@ -75,29 +67,6 @@ class PlanId {
     updatedAt = json['updatedAt'];
     iV = json['__v'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['plotNumber'] = this.plotNumber;
-    data['totalAmount'] = this.totalAmount;
-    data['bookingAmount'] = this.bookingAmount;
-    data['instalmentAmount'] = this.instalmentAmount;
-    data['investmentMonth'] = this.investmentMonth;
-    data['extraPaymentTerm'] = this.extraPaymentTerm;
-    data['extraPaymentAmount'] = this.extraPaymentAmount;
-    data['possessionAmount'] = this.possessionAmount;
-    if (this.plotId != null) {
-      data['plotId'] = this.plotId!.toJson();
-    }
-    if (this.payments != null) {
-      data['payments'] = this.payments!.map((v) => v.toJson()).toList();
-    }
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
-    return data;
-  }
 }
 
 class PlotId {
@@ -107,6 +76,7 @@ class PlotId {
   String? type;
   int? sqYard;
   int? price;
+  String? details;
   String? createdAt;
   String? updatedAt;
   int? iV;
@@ -118,6 +88,7 @@ class PlotId {
       this.type,
       this.sqYard,
       this.price,
+      this.details,
       this.createdAt,
       this.updatedAt,
       this.iV});
@@ -130,26 +101,11 @@ class PlotId {
         : null;
     type = json['type'];
     sqYard = json['sqYard'];
+    details = json['details'] ?? 'ponka';
     price = json['price'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['plotNumber'] = this.plotNumber;
-    if (this.blockNumber != null) {
-      data['BlockNumber'] = this.blockNumber!.toJson();
-    }
-    data['type'] = this.type;
-    data['sqYard'] = this.sqYard;
-    data['price'] = this.price;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
-    return data;
   }
 }
 
@@ -183,19 +139,6 @@ class BlockNumber {
     updatedAt = json['updatedAt'];
     iV = json['__v'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['blockName'] = this.blockName;
-    data['totalNumberOfPlot'] = this.totalNumberOfPlot;
-    data['plotStartNumber'] = this.plotStartNumber;
-    data['plotEndNumber'] = this.plotEndNumber;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
-    return data;
-  }
 }
 
 class Payments {
@@ -218,15 +161,5 @@ class Payments {
     dueDate = json['dueDate'];
     status = json['status'];
     sId = json['_id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['installmentNumber'] = this.installmentNumber;
-    data['amount'] = this.amount;
-    data['dueDate'] = this.dueDate;
-    data['status'] = this.status;
-    data['_id'] = this.sId;
-    return data;
   }
 }

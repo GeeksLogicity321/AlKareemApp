@@ -104,6 +104,7 @@ class InstallMentsScreen extends StatelessWidget {
                                   plotNumber: currentPlan.plotNumber ?? '',
                                 )
                               : InstallmentsTile(
+                                  planId: currentPlan.sId!,
                                   dueDate:
                                       currentPlan.firstPendingPayment!.dueDate!,
                                   plotNumber: currentPlan.plotNumber ?? '',

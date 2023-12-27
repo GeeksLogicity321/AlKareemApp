@@ -21,12 +21,14 @@ class InstallmentWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Flexible(
-              child: SizedBox(
-                width: 30.w,
-                child: Text(
-                  title,
-                  style: TextStyle(fontSize: 10.sp, color: Colors.black),
+            SizedBox(
+              width: 30.w,
+              child: Text(
+                title,
+                maxLines: 2,
+                style: TextStyle(
+                  fontSize: 10.sp,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -37,6 +39,7 @@ class InstallmentWidget extends StatelessWidget {
               child: SizedBox(
                 width: 30.w,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: amount
                       .map((item) => Text(
                             item,
