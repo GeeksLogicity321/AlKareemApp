@@ -18,6 +18,10 @@ payNow(String planId, BuildContext context) async {
     final Map<String, dynamic> jsonResponse = jsonDecode(response.body);
     if (response.statusCode == 200) {
       context.read<UserPaymentProvider>().getPayments(context);
+      successSnackbar(context, 'success ${jsonResponse['data']}');
+
+      Navigator.pop(context);
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         margin: EdgeInsets.only(bottom: 50.h),
         elevation: 0,
@@ -25,15 +29,15 @@ payNow(String planId, BuildContext context) async {
         backgroundColor: Colors.transparent,
         content: AwesomeSnackbarContent(
           title: 'Success!',
-          message: '${jsonResponse['data']}',
-          contentType: ContentType.success,
+          message:
+              '{status code: ${response.statusCode},${jsonResponse['data']}}',
+          contentType: ContentType.failure,
         ),
       ));
-    } else {
-      errorSnackbar(context,
-          'status code: ${response.statusCode},${jsonResponse['data']}');
+      Navigator.pop(context);
     }
   } catch (e) {
     errorSnackbar(context, 'Error: ${e}');
+    Navigator.pop(context);
   }
 }

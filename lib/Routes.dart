@@ -13,7 +13,7 @@ import 'View/ProfileScreen/HelpCenter.dart';
 import 'View/ProfileScreen/NotificationScreen.dart';
 import 'View/ProfileScreen/PaymentsScreen.dart';
 import 'View/ProfileScreen/SecurityScreen.dart';
-import 'View/PropertyDetailScreen.dart';
+
 import 'View/SplashScreen/OnBoardingScreen.dart';
 import 'View/SplashScreen/SplashScreen.dart';
 import 'View/SplashScreen/OnBoardingScreen2.dart';

@@ -6,9 +6,9 @@ import 'package:realestate/View/FeaturedWeidgetScreen/FormsScreen.dart';
 import 'package:realestate/View/FeaturedWeidgetScreen/GalleryScreen.dart';
 import 'package:realestate/View/FeaturedWeidgetScreen/MapsScreen.dart';
 import 'package:realestate/View/FeaturedWeidgetScreen/WaterBillScreen.dart';
-import 'package:realestate/View/PropertyDetailScreen.dart';
 import 'package:realestate/ViewModel/AuthProvider.dart';
 import 'package:realestate/ViewModel/CatagoryProvider.dart';
+import 'package:realestate/ViewModel/GalleryProvider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Widgets/HomeFeaturedWidget.dart';
@@ -135,10 +135,11 @@ class HomeScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
+                        context.read<GalleryProvider>().fetchGallery(context);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const GalleryScreen()),
+                              builder: (context) => GalleryScreen()),
                         );
                       },
                       child: HomeFeaturedWidget(

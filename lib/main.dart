@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:realestate/ViewModel/BottomnavProvider.dart';
 import 'package:realestate/ViewModel/CatagoryProvider.dart';
+import 'package:realestate/ViewModel/GalleryProvider.dart';
 import 'Routes.dart';
 import 'View/SplashScreen/SplashScreen.dart';
 import 'ViewModel/AuthProvider.dart';
@@ -32,6 +34,12 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (context) => UserPaymentProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => TabControllerProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => GalleryProvider(),
           ),
         ],
         child: MaterialApp(

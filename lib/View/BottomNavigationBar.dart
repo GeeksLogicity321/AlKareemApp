@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:provider/provider.dart';
 import 'package:realestate/View/HomeScreen.dart';
 import 'package:realestate/View/InstallMentScreens/InstallMentsScreen.dart';
 import 'package:realestate/View/PenaltyScreen.dart';
 import 'package:realestate/View/ProfileScreen/ProfileScreen.dart';
+import 'package:realestate/ViewModel/BottomnavProvider.dart';
 import 'package:realestate/constants/constants.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
@@ -11,11 +13,11 @@ class BottomNavigationBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _controller = context.watch<TabControllerProvider>().controller;
     return PersistentTabView(
       context,
-      controller: PersistentTabController(),
+      controller: _controller,
       screens: [
-        // Define your screens here
         HomeScreen(),
         InstallMentsScreen(),
         PenaltyScreen(),

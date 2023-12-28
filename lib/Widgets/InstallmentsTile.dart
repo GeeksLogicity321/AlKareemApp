@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:intl/intl.dart';
-
 import '../Utills/BottomModelSheet.dart';
+import '../Utills/DateTimeFunction.dart';
 
 class InstallmentsTile extends StatelessWidget {
   InstallmentsTile({
@@ -21,6 +20,7 @@ class InstallmentsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentMonthNotPaid = isDateGreaterThanNow(dueDate);
     return Padding(
       padding: EdgeInsets.only(top: 2.h),
       child: ListTile(
@@ -32,6 +32,7 @@ class InstallmentsTile extends StatelessWidget {
           'Plot No. #  $plotNumber',
           style: TextStyle(
             fontSize: 13.sp,
+            color: currentMonthNotPaid ? Colors.black : Colors.grey,
           ),
         ),
         subtitle: Column(
@@ -41,10 +42,11 @@ class InstallmentsTile extends StatelessWidget {
               'Installment No# ${installmentNumber.toString()}',
               style: TextStyle(
                 fontSize: 13.sp,
+                color: currentMonthNotPaid ? Colors.black : Colors.grey,
               ),
             ),
             Text(
-              DateFormat("dd-MMM-yyyy").format(DateTime.parse(dueDate)),
+              convertDateTime(dueDate),
               style: TextStyle(
                   fontSize: 13.sp,
                   color: Colors.grey,
@@ -57,28 +59,36 @@ class InstallmentsTile extends StatelessWidget {
             Text('Rs. ${amount.toString()}',
                 style: TextStyle(
                     fontSize: 10.sp,
-                    color: Colors.black,
+                    color: currentMonthNotPaid ? Colors.black : Colors.grey,
                     fontWeight: FontWeight.bold)),
-            InkWell(
-              onTap: () => showCustomBottomSheet(
-                  planId: planId,
-                  context: context,
-                  amount: amount,
-                  plotNumber: plotNumber),
-              child: Container(
-                height: 3.h,
-                width: 20.w,
-                decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(6.w)),
-                child: Center(
-                    child: Text('Pay Now',
-                        style: TextStyle(
-                          fontSize: 10.sp,
-                          color: Colors.white,
-                        ))),
-              ),
-            )
+            currentMonthNotPaid
+                ? InkWell(
+                    onTap: () => showCustomBottomSheet(
+                        planId: planId,
+                        context: context,
+                        amount: amount,
+                        plotNumber: plotNumber),
+                    child: Container(
+                      height: 3.h,
+                      width: 20.w,
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(6.w)),
+                      child: Center(
+                          child: Text('Pay Now',
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                color: Colors.white,
+                              ))),
+                    ),
+                  )
+                : Text(
+                    'Due Next Month',
+                    style: TextStyle(
+                        fontSize: 10.sp,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold),
+                  )
           ],
         ),
       ),

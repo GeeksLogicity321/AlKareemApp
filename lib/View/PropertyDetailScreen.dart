@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+// import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
+// import 'package:realestate/View/InstallMentScreens/InstallMentsScreen.dart';
 import 'package:realestate/ViewModel/AuthProvider.dart';
+import 'package:realestate/ViewModel/BottomnavProvider.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -13,7 +16,7 @@ import '../constants/constants.dart';
 class PropertyDetailScreen extends StatelessWidget {
   PropertyDetailScreen({super.key, required this.plainIdObject});
 
-  PlanId plainIdObject;
+  final PlanId plainIdObject;
 
   static const routename = 'PropertyDetailScreen';
 
@@ -283,13 +286,13 @@ class PropertyDetailScreen extends StatelessWidget {
                         ],
                       ),
                       InstallmentWidget(
-                        title: 'Demarcation of plot',
-                        amount: [''],
+                        title: 'Investment Month',
+                        amount: [plainIdObject.investmentMonth.toString()],
                       ),
                       InstallmentWidget(
-                        title: 'Extra Payment Amount',
+                        title: 'Extra Payment Terms',
                         amount: [
-                          plainIdObject.extraPaymentAmount.toString(),
+                          plainIdObject.extraPaymentTerm.toString(),
                         ],
                       ),
                       InstallmentWidget(
@@ -661,7 +664,9 @@ class PropertyDetailScreen extends StatelessWidget {
                     child: SizedBox(
                       width: 80.w,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.read<TabControllerProvider>().changeTab(1);
+                        },
                         child: Text('Pay Now'),
                       ),
                     ),

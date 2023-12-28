@@ -63,13 +63,15 @@ class InstallMentsScreen extends StatelessWidget {
                         ),
                         Consumer<UserPaymentProvider>(
                             builder: (_, provider, __) {
-                          return Text(
-                            provider.tolatPayment.toString(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold),
-                          );
+                          return provider.isLoading
+                              ? CircularProgressIndicator()
+                              : Text(
+                                  provider.tolatPayment.toString(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.bold),
+                                );
                         }),
                       ],
                     ),
@@ -94,29 +96,36 @@ class InstallMentsScreen extends StatelessWidget {
                   } else if (provider.paymentsList!.isEmpty) {
                     return Text('No Pending payment');
                   } else {
-                    return ListView.builder(
-                        itemCount: provider.paymentsList!.length,
-                        itemBuilder: (context, index) {
-                          final currentPlan = provider.paymentsList![index];
-                          return currentPlan.firstPendingPayment == null
-                              ? InactiveInstallmentsTile(
-                                  message: currentPlan.message ?? '',
-                                  plotNumber: currentPlan.plotNumber ?? '',
-                                )
-                              : InstallmentsTile(
-                                  planId: currentPlan.sId!,
-                                  dueDate:
-                                      currentPlan.firstPendingPayment!.dueDate!,
-                                  plotNumber: currentPlan.plotNumber ?? '',
-                                  installmentNumber: currentPlan
-                                          .firstPendingPayment!
-                                          .installmentNumber ??
-                                      0,
-                                  amount:
-                                      currentPlan.firstPendingPayment!.amount ??
-                                          0,
-                                );
-                        });
+                    return RefreshIndicator(
+                      onRefresh: () async {
+                        await context
+                            .read<UserPaymentProvider>()
+                            .getPayments(context);
+                      },
+                      child: ListView.builder(
+                          itemCount: provider.paymentsList!.length,
+                          itemBuilder: (context, index) {
+                            final currentPlan = provider.paymentsList![index];
+                            return currentPlan.firstPendingPayment == null
+                                ? InactiveInstallmentsTile(
+                                    message: currentPlan.message ?? '',
+                                    plotNumber: currentPlan.plotNumber ?? '',
+                                  )
+                                : InstallmentsTile(
+                                    planId: currentPlan.sId!,
+                                    dueDate: currentPlan
+                                        .firstPendingPayment!.dueDate!,
+                                    plotNumber: currentPlan.plotNumber ?? '',
+                                    installmentNumber: currentPlan
+                                            .firstPendingPayment!
+                                            .installmentNumber ??
+                                        0,
+                                    amount: currentPlan
+                                            .firstPendingPayment!.amount ??
+                                        0,
+                                  );
+                          }),
+                    );
                   }
                 }),
               ),

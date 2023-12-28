@@ -38,6 +38,8 @@ class UserPaymentProvider extends ChangeNotifier {
       final jsonResponse = json.decode(response.body);
 
       if (response.statusCode == 200) {
+        _tolatPayment = 0;
+        _paymentsList!.clear();
         for (var i in jsonResponse['data']) {
           _paymentsList!.add(PaymentsModel.fromJson(i));
           if (i['firstPendingPayment'] != null) {

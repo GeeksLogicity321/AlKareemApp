@@ -6,7 +6,6 @@ import 'package:realestate/ViewModel/AuthProvider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Utills/validation.dart';
-import '../ViewModel/UserPaymentProvider.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});

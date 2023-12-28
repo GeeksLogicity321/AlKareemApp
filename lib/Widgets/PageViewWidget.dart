@@ -10,7 +10,7 @@ class PageViewWidget extends StatelessWidget {
     required this.planIdObject,
   });
 
-  PlanId planIdObject;
+  final PlanId planIdObject;
 
   @override
   Widget build(BuildContext context) {
