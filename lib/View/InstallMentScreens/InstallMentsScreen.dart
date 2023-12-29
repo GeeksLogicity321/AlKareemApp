@@ -82,6 +82,7 @@ class InstallMentsScreen extends StatelessWidget {
             Expanded(
               child: Container(
                 margin: EdgeInsets.only(top: 2.h),
+                
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -94,7 +95,12 @@ class InstallMentsScreen extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     );
                   } else if (provider.paymentsList!.isEmpty) {
-                    return Text('No Pending payment');
+                    return Center(
+                      child: Padding(
+                          padding:  EdgeInsets.symmetric(horizontal: 20.w),
+                          child: Image.asset('Assets/Group 4031.png'),
+                        ),
+                    );
                   } else {
                     return RefreshIndicator(
                       onRefresh: () async {
