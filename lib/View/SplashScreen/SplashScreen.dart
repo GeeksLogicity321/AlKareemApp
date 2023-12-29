@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:sizer/sizer.dart';
 
+import '../../ViewModel/PenaltyProvider.dart';
 import '../../Widgets/spinningImage.dart';
 import '../BottomNavigationBar.dart';
 import 'OnBoardingScreen.dart';
@@ -38,6 +39,8 @@ class _SplashScreenState extends State<SplashScreen> {
       try {
         await context.read<LoginProvider>().getUser(context);
         context.read<UserPaymentProvider>().setSeclected(
+            context, context.read<LoginProvider>().userObject.data!.sId!);
+            context.read<UserPenaltyProvider>().setSeclected(
             context, context.read<LoginProvider>().userObject.data!.sId!);
         Navigator.pushReplacementNamed(
             context, BottomNavigationBarWidget.routename);

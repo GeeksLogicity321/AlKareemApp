@@ -170,7 +170,14 @@ class _AccountScreenState extends State<AccountScreen> {
                   backgroundColor: Colors.grey,
                   child: imageToShow()),
             ),
-            Spacer(),
+            Container(
+              
+              color: Colors.white,child: Column(children: [Row(children: [Text('Name:'),Text('data')],),
+            Row(children: [Text('Name:'),Text('data')],),
+            Row(children: [Text('Email:'),Text('data')],),
+            Row(children: [Text("Father's Name:"),Text('data')],),
+            Row(children: [Text('CNIC:'),Text('data')],),
+            Row(children: [Text('Unique ID:'),Text('data')],),],),),
             SizedBox(
               width: double.infinity.w,
               child: ElevatedButton(

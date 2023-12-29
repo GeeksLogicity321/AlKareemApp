@@ -6,6 +6,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 import 'package:realestate/View/BottomNavigationBar.dart';
 import 'package:realestate/ViewModel/AuthProvider.dart';
+import 'package:realestate/ViewModel/PenaltyProvider.dart';
 import 'package:realestate/constants/constants.dart';
 import 'package:sizer/sizer.dart';
 
@@ -165,6 +166,8 @@ class OtpScreen extends StatelessWidget {
         SetAuthTocken(jsonResponse['Token'],
             context.read<LoginProvider>().userObject.data!.sId!);
         context.read<UserPaymentProvider>().setSeclected(
+            context, context.read<LoginProvider>().userObject.data!.sId!);
+            context.read<UserPenaltyProvider>().setSeclected(
             context, context.read<LoginProvider>().userObject.data!.sId!);
         Navigator.pushReplacementNamed(
             context, BottomNavigationBarWidget.routename);

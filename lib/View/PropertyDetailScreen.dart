@@ -280,7 +280,7 @@ class PropertyDetailScreen extends StatelessWidget {
                         amount: [plainIdObject.bookingAmount.toString()],
                       ),
                       InstallmentWidget(
-                        title: '60 Monthly Installments',
+                        title: 'Instalment Amount',
                         amount: [
                           plainIdObject.instalmentAmount.toString(),
                         ],
@@ -296,8 +296,12 @@ class PropertyDetailScreen extends StatelessWidget {
                         ],
                       ),
                       InstallmentWidget(
-                        title: 'Before Possession',
-                        amount: [plainIdObject.possessionAmount.toString()],
+                        title: 'Extra Payment Amount',
+                        amount: [plainIdObject.extraPaymentAmount.toString()],
+                      ),
+                      InstallmentWidget(
+                        title: 'Possession Amount',
+                        amount: [plainIdObject.possessionAmount .toString()],
                       ),
                     ],
                   ),

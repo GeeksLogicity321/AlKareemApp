@@ -12,10 +12,10 @@ class ApiConstants {
   static const catagory = '${baseURL}/getFormCategory';
   static const forms = '${baseURL}/getForm/';
   static const payments = '${baseURL}/userPayment/';
-  static const payNow = '${baseURL}/payment/';
+  static const payInstallmentNow = '${baseURL}/payment/';
   static const gallery = '${baseURL}/getAllGallery';          
     static const penalty = '${baseURL}/userPanelty/'; 
-
+static const payPenaltyNow = '${baseURL}/payPanelty/'; 
   static const LatLng alKareemCordinates =
       LatLng(31.29229738594992, 74.22060065177402);
 }

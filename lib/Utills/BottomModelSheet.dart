@@ -1,8 +1,9 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
-import '../Widgets/BottomModelSheet.dart';
+import '../Widgets/InstallmentBottomModelSheet.dart';
+import '../Widgets/PenaltyBottomModelsheel.dart';
 
-void showCustomBottomSheet(
+void showInstallmentCustomBottomSheet(
     {required BuildContext context,
     String? plotNumber,
     int? amount,
@@ -10,10 +11,25 @@ void showCustomBottomSheet(
   showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
-      return BottomModelSheetWidget(
+      return InstallmentBottomModelSheetWidget(
         amount: amount,
         planId: planId,
         plotNumber: plotNumber,
+      );
+    },
+  );
+}
+void showPenaltyCustomBottomSheet(
+    {required BuildContext context,
+    int? amount,
+    required String penaltyId}) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return PenaltyBottomModelSheetWidget(
+        amount: amount,
+        penaltyId: penaltyId,
+        
       );
     },
   );

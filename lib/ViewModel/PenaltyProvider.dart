@@ -40,11 +40,13 @@ class UserPenaltyProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
         _totalPenalties = 0;
         _penaltyList!.clear();
+        if(jsonResponse['data'] !=null){
         for (var i in jsonResponse['data']) {
           _penaltyList!.add(PenaltyModel.fromJson(i));
           if (i['amount'] != null) {
             _totalPenalties = _totalPenalties! + i['amount'];
           }
+        }
         }
 
         _isLoading = false;

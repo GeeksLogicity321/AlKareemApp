@@ -2,11 +2,14 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:realestate/Models/UserModel.dart';
 import 'package:realestate/Utills/AuthTockenFunctions.dart';
 import 'package:realestate/Utills/SnackBars.dart';
 
 import '../constants/ApiConstants.dart';
+import 'PenaltyProvider.dart';
+import 'UserPaymentProvider.dart';
 
 class LoginProvider extends ChangeNotifier {
   String _uniqueId = '';
@@ -59,9 +62,14 @@ class LoginProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
         _userObject = UserModel.fromJson(jsonResponse);
-        _userObject.data!.isVerify!
-            ? SetAuthTocken(jsonResponse['Token'], _userObject.data!.sId!)
-            : null;
+        if(_userObject.data!.isVerify!)
+            {
+               SetAuthTocken(jsonResponse['Token'], _userObject.data!.sId!);
+            context.read<UserPaymentProvider>().setSeclected(
+            context, _userObject.data!.sId!);
+            context.read<UserPenaltyProvider>().setSeclected(
+            context, _userObject.data!.sId!);
+            }
         _isLoading = false;
         notifyListeners();
 

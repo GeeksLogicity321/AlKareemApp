@@ -63,7 +63,7 @@ class InstallmentsTile extends StatelessWidget {
                     fontWeight: FontWeight.bold)),
             currentMonthNotPaid
                 ? InkWell(
-                    onTap: () => showCustomBottomSheet(
+                    onTap: () => showInstallmentCustomBottomSheet(
                         planId: planId,
                         context: context,
                         amount: amount,

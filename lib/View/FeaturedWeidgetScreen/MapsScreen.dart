@@ -38,7 +38,7 @@ class _MapsScreenState extends State<MapsScreen> {
               child: ElevatedButton(
                   onPressed: () {
                     openGoogleMaps(ApiConstants.alKareemCordinates.latitude,
-                        ApiConstants.alKareemCordinates.longitude);
+                        ApiConstants.alKareemCordinates.longitude,context);
                   },
                   child: Text('Get directions')),
             )
