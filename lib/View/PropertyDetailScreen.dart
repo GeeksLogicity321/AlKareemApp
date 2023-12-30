@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
+import 'package:realestate/Utills/DateTimeFunction.dart';
 // import 'package:realestate/View/InstallMentScreens/InstallMentsScreen.dart';
 import 'package:realestate/ViewModel/AuthProvider.dart';
 import 'package:realestate/ViewModel/BottomnavProvider.dart';
@@ -301,7 +302,7 @@ class PropertyDetailScreen extends StatelessWidget {
                       ),
                       InstallmentWidget(
                         title: 'Possession Amount',
-                        amount: [plainIdObject.possessionAmount .toString()],
+                        amount: [plainIdObject.possessionAmount.toString()],
                       ),
                     ],
                   ),
@@ -395,7 +396,7 @@ class PropertyDetailScreen extends StatelessWidget {
                 // ),
                 Padding(
                   padding: EdgeInsets.only(top: 2.h, left: 4.w, bottom: 1.h),
-                  child: Text('Installment Remaining',
+                  child: Text('Installment Paid',
                       style: TextStyle(
                           fontSize: 15.sp,
                           color: Colors.black,
@@ -662,6 +663,63 @@ class PropertyDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: 2.h,
                 ),
+                Container(
+                  margin: EdgeInsets.only(
+                    left: 4.w,
+                    right: 4.w,
+                  ),
+                  padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 75, 75, 75),
+                      borderRadius: BorderRadius.circular(6.w)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Center(
+                          child: Text('Paid Installments',
+                              style: TextStyle(
+                                  fontSize: 10.sp,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500)),
+                        ),
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Text('Amount',
+                              style: TextStyle(
+                                  fontSize: 10.sp,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4.w),
+                  child: Column(
+                      children: plainIdObject.payments!
+                          .map(
+                            (e) => e.status == 'paid'
+                                ? InstallmentWidget(
+                                    title: convertDateTime(e.dueDate!),
+                                    amount: [e.amount.toString()],
+                                  )
+                                : SizedBox(),
+                          )
+                          .toList()),
+                ),
+                SizedBox(height: 2.h),
+                Padding(
+                  padding: EdgeInsets.only(top: 2.h, left: 4.w, bottom: 1.h),
+                  child: Text('Pay Remaining Installments',
+                      style: TextStyle(
+                          fontSize: 15.sp,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500)),
+                ),
+
                 Center(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 2.w),

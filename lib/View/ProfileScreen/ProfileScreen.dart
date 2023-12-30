@@ -9,10 +9,6 @@ import '../../ViewModel/AuthProvider.dart';
 import '../../Widgets/ProfileTile.dart';
 import 'AccountScreen.dart';
 import 'HelpCenter.dart';
-import 'MyRentScreen.dart';
-import 'NotificationScreen.dart';
-import 'PaymentsScreen.dart';
-import 'SecurityScreen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -27,14 +23,6 @@ class ProfileScreen extends StatelessWidget {
           'Profile',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
         ),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.more_vert,
-                color: Colors.black,
-              ))
-        ],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 4.w),
@@ -94,33 +82,6 @@ class ProfileScreen extends StatelessWidget {
               ),
               ProfileTiles(
                 ontap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MyRentScreen()),
-                  );
-                },
-                title: 'Due Date',
-                icon: Icons.calendar_month_outlined,
-              ),
-              ProfileTiles(
-                  ontap: () {
-                    // Navigator.pushNamed(context, PaymentssScreen.routename);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const PaymentssScreen()),
-                    );
-                  },
-                  title: 'Payments',
-                  icon: Icons.wallet),
-              Container(
-                width: double.infinity,
-                height: 0.11.h,
-                color: Colors.grey,
-              ),
-              ProfileTiles(
-                ontap: () {
                   // Navigator.pushNamed(context, AccountScreen.routename);
                   Navigator.push(
                     context,
@@ -129,29 +90,6 @@ class ProfileScreen extends StatelessWidget {
                 },
                 title: 'Profile',
                 icon: Icons.calendar_month_outlined,
-              ),
-              ProfileTiles(
-                  ontap: () {
-                    // Navigator.pushNamed(context, NotificationScreen.routename);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const NotificationScreen()),
-                    );
-                  },
-                  title: 'Notification',
-                  icon: Icons.wallet),
-              ProfileTiles(
-                ontap: () {
-                  // Navigator.pushNamed(context, SecurityScreen.routename);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SecurityScreen()),
-                  );
-                },
-                title: 'Security',
-                icon: Icons.shield_outlined,
               ),
               ProfileTiles(
                 ontap: () {

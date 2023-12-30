@@ -13,9 +13,10 @@ class ApiConstants {
   static const forms = '${baseURL}/getForm/';
   static const payments = '${baseURL}/userPayment/';
   static const payInstallmentNow = '${baseURL}/payment/';
-  static const gallery = '${baseURL}/getAllGallery';          
-    static const penalty = '${baseURL}/userPanelty/'; 
-static const payPenaltyNow = '${baseURL}/payPanelty/'; 
+  static const gallery = '${baseURL}/getAllGallery';
+  static const penalty = '${baseURL}/userPanelty/';
+  static const payPenaltyNow = '${baseURL}/payPanelty/';
+  static const Email = '${baseURL}/sendmail';
   static const LatLng alKareemCordinates =
       LatLng(31.29229738594992, 74.22060065177402);
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:realestate/View/BottomNavigationBar.dart';
+import 'package:realestate/View/ForgotPassword.dart';
 import 'package:realestate/View/OTP_Screen.dart';
 import 'package:realestate/ViewModel/AuthProvider.dart';
 import 'package:sizer/sizer.dart';
@@ -114,12 +115,21 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                         Spacer(),
-                        Text(
-                          'Forgot Password',
-                          style:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    decoration: TextDecoration.underline,
-                                  ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ForgotPasswordScreen()),
+                            );
+                          },
+                          child: Text(
+                            'Forgot Password',
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      decoration: TextDecoration.underline,
+                                    ),
+                          ),
                         ),
                       ],
                     ),

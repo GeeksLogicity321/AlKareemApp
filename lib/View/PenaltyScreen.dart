@@ -6,14 +6,13 @@ import 'package:realestate/constants/constants.dart';
 import 'package:sizer/sizer.dart';
 
 import '../ViewModel/AuthProvider.dart';
-import '../Widgets/InstallmentsTile.dart';
 
 class PenaltyScreen extends StatelessWidget {
   const PenaltyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: kPrimaryColor,
       body: SafeArea(
         child: Column(
@@ -83,7 +82,6 @@ class PenaltyScreen extends StatelessWidget {
             Expanded(
               child: Container(
                 margin: EdgeInsets.only(top: 2.h),
-                
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -97,16 +95,16 @@ class PenaltyScreen extends StatelessWidget {
                     );
                   } else if (provider.penaltyList!.isEmpty) {
                     return RefreshIndicator(
-                       onRefresh: () async {
+                      onRefresh: () async {
                         await context
                             .read<UserPenaltyProvider>()
                             .getPenalties(context);
                       },
                       child: Center(
                         child: Padding(
-                            padding:  EdgeInsets.symmetric(horizontal: 20.w),
-                            child: Image.asset('Assets/Group 4031.png'),
-                          ),
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          child: Image.asset('Assets/Group 4031.png'),
+                        ),
                       ),
                     );
                   } else {
@@ -120,8 +118,13 @@ class PenaltyScreen extends StatelessWidget {
                           itemCount: provider.penaltyList!.length,
                           itemBuilder: (context, index) {
                             final currentPanalty = provider.penaltyList![index];
-                            return 
-                                PenaltyTileWidget(reason: currentPanalty.reason!, amount: currentPanalty.amount!, dueDate: currentPanalty.date!,penaltyId: currentPanalty.sId!,);
+                            return PenaltyTileWidget(
+                              status: currentPanalty.paid!,
+                              reason: currentPanalty.reason!,
+                              amount: currentPanalty.amount!,
+                              dueDate: currentPanalty.date!,
+                              penaltyId: currentPanalty.sId!,
+                            );
                           }),
                     );
                   }

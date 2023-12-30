@@ -35,29 +35,19 @@ class HomeScreen extends StatelessWidget {
                   ));
           }),
         ),
-        title: Column(
-          children: [
-            Text(
-              'Welcome to Al Kareem City',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            Consumer<LoginProvider>(builder: (_, provider, __) {
-              return Text(
-                provider.userObject.data!.name ?? '',
-                style: Theme.of(context).textTheme.headlineSmall,
-              );
-            })
-          ],
+        title: Text(
+          'Welcome to Al Kareem City',
+          style: Theme.of(context).textTheme.bodySmall,
         ),
-        actions: [
-          Badge(
-              child: Icon(
-            Icons.notifications_none,
-          )),
-          SizedBox(
-            width: 2.w,
-          )
-        ],
+        // actions: [
+        //   Badge(
+        //       child: Icon(
+        //     Icons.notifications_none,
+        //   )),
+        //   SizedBox(
+        //     width: 2.w,
+        //   )
+        // ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -152,7 +142,7 @@ class HomeScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ComplaintsScreen()),
+                              builder: (context) => ComplaintsScreen()),
                         );
                       },
                       child: HomeFeaturedWidget(

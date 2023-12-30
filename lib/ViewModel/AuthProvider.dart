@@ -62,14 +62,15 @@ class LoginProvider extends ChangeNotifier {
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
         _userObject = UserModel.fromJson(jsonResponse);
-        if(_userObject.data!.isVerify!)
-            {
-               SetAuthTocken(jsonResponse['Token'], _userObject.data!.sId!);
-            context.read<UserPaymentProvider>().setSeclected(
-            context, _userObject.data!.sId!);
-            context.read<UserPenaltyProvider>().setSeclected(
-            context, _userObject.data!.sId!);
-            }
+        if (_userObject.data!.isVerify!) {
+          SetAuthTocken(jsonResponse['Token'], _userObject.data!.sId!);
+          context
+              .read<UserPaymentProvider>()
+              .setSeclected(context, _userObject.data!.sId!);
+          context
+              .read<UserPenaltyProvider>()
+              .setSeclected(context, _userObject.data!.sId!);
+        }
         _isLoading = false;
         notifyListeners();
 

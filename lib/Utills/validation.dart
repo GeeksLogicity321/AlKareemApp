@@ -29,3 +29,30 @@ String? validatePassword(String? password) {
     return 'enter a password';
   }
 }
+
+String? isValidEmail(String? email) {
+  final RegExp emailRegExp = RegExp(
+    r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+  );
+  if (email == null || email.isEmpty) {
+    return 'enter your email';
+  } else if (emailRegExp.hasMatch(email) == false) {
+    return 'enter a valid email';
+  } else {
+    return null;
+  }
+}
+
+String? isValidMobileNumber(String? phoneNumber) {
+  final RegExp mobileNumberRegExp = RegExp(
+    r'^[0-9]{11}$',
+  );
+
+  if (phoneNumber == null || phoneNumber.isEmpty) {
+    return 'enter your phoneNumber';
+  } else if (mobileNumberRegExp.hasMatch(phoneNumber) == false) {
+    return 'enter a valid phoneNumber';
+  } else {
+    return null;
+  }
+}

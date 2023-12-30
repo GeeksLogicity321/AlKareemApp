@@ -7,5 +7,6 @@ bool isDateGreaterThanNow(String dueDate) {
 }
 
 String convertDateTime(String date) {
-  return DateFormat("dd-MMM-yyyy").format(DateTime.parse(date));
+  DateTime compareDate = DateTime.parse(date);
+  return DateFormat("dd-MMM-yyyy").format(compareDate);
 }
