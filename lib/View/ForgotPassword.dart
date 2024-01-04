@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:realestate/ViewModel/AuthProvider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../Utills/SnackBars.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({super.key});
@@ -27,10 +31,23 @@ class ForgotPasswordScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     SizedBox(
+                      height: 4.h,
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.arrow_back),
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(
                       height: 18.h,
                     ),
                     Text(
-                      'Login',
+                      'Forgot Password',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.sp,
@@ -40,11 +57,17 @@ class ForgotPasswordScreen extends StatelessWidget {
                       height: 8.h,
                     ),
                     TextFormField(
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        context.read<LoginProvider>().setUniqueId(value);
+                      },
                       controller: _uniqueIdController,
-                      // validator: (value) {
-                      //   return validateUniqueId(value);
-                      // },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter an id';
+                        } else {
+                          return null;
+                        }
+                      },
                       keyboardType: TextInputType.number,
                       style: TextStyle(fontSize: 10.sp),
                       decoration: InputDecoration().copyWith(
@@ -57,16 +80,22 @@ class ForgotPasswordScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () async {},
-                        child: Text('Login'),
-                      ),
+                      child: Consumer<LoginProvider>(
+                          builder: (_, loginProvider, __) {
+                        return ElevatedButton(
+                          onPressed: () async {
+                            _formKey.currentState!.validate()
+                                ? loginProvider.getForgetPasswordUser(context)
+                                : errorSnackbar(context, 'Please enter ID');
+                          },
+                          child: loginProvider.isLoading
+                              ? CircularProgressIndicator()
+                              : Text('Get Password'),
+                        );
+                      }),
                     ),
                     SizedBox(
                       height: 2.h,
-                    ),
-                    SizedBox(
-                      height: 6.h,
                     ),
                   ],
                 ),
@@ -76,6 +105,5 @@ class ForgotPasswordScreen extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

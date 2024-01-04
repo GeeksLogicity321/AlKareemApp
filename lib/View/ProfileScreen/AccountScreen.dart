@@ -171,33 +171,126 @@ class _AccountScreenState extends State<AccountScreen> {
                   backgroundColor: Colors.grey,
                   child: imageToShow()),
             ),
+            SizedBox(
+              height: 2.h,
+            ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 4.w),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.w),
-              color: Colors.white ),
-              
-              child: Column(children: [
-                SizedBox(height: 2.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [Text('Name:',style: TextStyle(color: Colors.black,fontSize: 11.sp,fontWeight: FontWeight.bold),),Spacer(),Text(userProvider!.name!,style: TextStyle(color: Colors.grey,fontSize: 10.sp,),)],),
-              SizedBox(height: 2.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [Text('Email:',style: TextStyle(color: Colors.black,fontSize: 11.sp,fontWeight: FontWeight.bold),),Spacer(),Text(userProvider.email!,style: TextStyle(color: Colors.grey,fontSize: 11.sp,fontWeight: FontWeight.bold),)],),
-              SizedBox(height: 2.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [Text("Father",style: TextStyle(color: Colors.black,fontSize: 11.sp,fontWeight: FontWeight.bold),),Spacer(),Text(userProvider.fatherName!,style: TextStyle(color: Colors.grey,fontSize: 11.sp,fontWeight: FontWeight.bold),)],),
-              SizedBox(height: 2.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [Text('CNIC:',style: TextStyle(color: Colors.black,fontSize: 11.sp,fontWeight: FontWeight.bold),),Spacer(),Text(userProvider.cNIC!.toString(),style: TextStyle(color: Colors.grey,fontSize: 11.sp,fontWeight: FontWeight.bold),)],),
-              SizedBox(height: 2.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [Text('Unique ID:',style: TextStyle(color: Colors.black,fontSize: 11.sp,fontWeight: FontWeight.bold),),Spacer(),Text(userProvider.uniqueId.toString(),style: TextStyle(color: Colors.grey,fontSize: 11.sp,fontWeight: FontWeight.bold),)],),
-              SizedBox(height: 2.h),],),),
-              SizedBox(height: 2.h),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4.w),
+                  color: Colors.white),
+              child: Column(
+                children: [
+                  SizedBox(height: 2.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'Name:',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      Text(
+                        userProvider!.name!,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 10.sp,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 2.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'Email:',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      Text(
+                        userProvider.email!,
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 2.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        "Father",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      Text(
+                        userProvider.fatherName!,
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 2.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'CNIC:',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      Text(
+                        userProvider.cNIC!.toString(),
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 2.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'Unique ID:',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      Text(
+                        userProvider.uniqueId.toString(),
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 2.h),
+                ],
+              ),
+            ),
+            SizedBox(height: 2.h),
             SizedBox(
               width: double.infinity.w,
               child: ElevatedButton(

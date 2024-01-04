@@ -10,6 +10,7 @@ class MapsScreen extends StatefulWidget {
 }
 
 class _MapsScreenState extends State<MapsScreen> {
+  // ignore: unused_field
   late GoogleMapController _controller;
 
   Map<String, Marker> _markers = {};
@@ -38,7 +39,7 @@ class _MapsScreenState extends State<MapsScreen> {
               child: ElevatedButton(
                   onPressed: () {
                     openGoogleMaps(ApiConstants.alKareemCordinates.latitude,
-                        ApiConstants.alKareemCordinates.longitude,context);
+                        ApiConstants.alKareemCordinates.longitude, context);
                   },
                   child: Text('Get directions')),
             )

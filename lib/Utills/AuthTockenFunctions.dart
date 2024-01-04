@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../View/BottomNavigationBar.dart';
 import '../View/LoginScreen.dart';
+import '../ViewModel/BottomnavProvider.dart';
 import './SnackBars.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -48,6 +50,7 @@ void deleteAuthTocken(BuildContext context) async {
       MaterialPageRoute(builder: (context) => LoginScreen()),
       (Route<dynamic> route) => false,
     );
+    context.read<TabControllerProvider>().changeTab(0);
   } catch (e) {
     errorSnackbar(context, 'Error Could not Logout');
   }

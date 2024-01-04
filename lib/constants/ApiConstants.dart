@@ -17,6 +17,8 @@ class ApiConstants {
   static const penalty = '${baseURL}/userPanelty/';
   static const payPenaltyNow = '${baseURL}/payPanelty/';
   static const Email = '${baseURL}/sendmail';
+  static const forgetPassword = '${baseURL}/user/forgotPass/';
+  static const updatePassword = '${baseURL}/user/update/';
   static const LatLng alKareemCordinates =
       LatLng(31.29229738594992, 74.22060065177402);
 }

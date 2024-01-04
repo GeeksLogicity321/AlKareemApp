@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 import 'package:realestate/View/BottomNavigationBar.dart';
+import 'package:realestate/View/NewPasswordScreen.dart';
 import 'package:realestate/ViewModel/AuthProvider.dart';
 import 'package:realestate/ViewModel/PenaltyProvider.dart';
 import 'package:realestate/constants/constants.dart';
@@ -15,21 +16,20 @@ import '../Utills/SnackBars.dart';
 import '../ViewModel/UserPaymentProvider.dart';
 import '../constants/ApiConstants.dart';
 
-// import 'package:firebase_auth/firebase_auth.dart';
-
-// ignore: must_be_immutable
 class OtpScreen extends StatelessWidget {
-  // bool _isInit = true;
-
+  OtpScreen({super.key, this.forgotpassword});
   static const routeName = 'OtpScreen';
 
   final _formKey = GlobalKey<FormState>();
 
-  // String phoneNo;
-  TextEditingController otpController = TextEditingController();
+  final bool? forgotpassword;
+
+  final TextEditingController otpController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    print(
+        '${context.read<LoginProvider>().OTPcode} == ${otpController.value.text}');
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -101,10 +101,25 @@ class OtpScreen extends StatelessWidget {
                             height: 0.04.h,
                           ),
                           GestureDetector(
-                            onTap: () {
-                              _formKey.currentState!.validate()
-                                  ? verifyOtp(context)
-                                  : null;
+                            onTap: () async {
+                              if (_formKey.currentState!.validate()) {
+                                if (forgotpassword == null) {
+                                  verifyOtp(context);
+                                } else {
+                                  print(
+                                      '${context.read<LoginProvider>().OTPcode} == ${otpController.value.text}');
+                                  if (context.read<LoginProvider>().OTPcode ==
+                                      otpController.value.text) {
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                NewPasswordScreen()),
+                                        (Route<dynamic> route) => false);
+                                  } else {
+                                    errorSnackbar(context, 'Wrong OTP');
+                                  }
+                                }
+                              }
                             },
                             child: Container(
                               margin: const EdgeInsets.all(8),
@@ -167,7 +182,7 @@ class OtpScreen extends StatelessWidget {
             context.read<LoginProvider>().userObject.data!.sId!);
         context.read<UserPaymentProvider>().setSeclected(
             context, context.read<LoginProvider>().userObject.data!.sId!);
-            context.read<UserPenaltyProvider>().setSeclected(
+        context.read<UserPenaltyProvider>().setSeclected(
             context, context.read<LoginProvider>().userObject.data!.sId!);
         Navigator.pushReplacementNamed(
             context, BottomNavigationBarWidget.routename);
