@@ -22,7 +22,6 @@ class UserPenaltyProvider extends ChangeNotifier {
   void setSeclected(BuildContext context, String userId) {
     _selected = userId;
     getPenalties(context);
-    notifyListeners();
   }
 
   Future<bool> getPenalties(BuildContext context) async {
@@ -54,6 +53,7 @@ class UserPenaltyProvider extends ChangeNotifier {
 
         return true;
       } else {
+        _penaltyList!.clear();
         _isLoading = false;
         notifyListeners();
         errorSnackbar(context,

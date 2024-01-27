@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:realestate/View/FeaturedWeidgetScreen/AlKareenFacilitiesScreen.dart';
-import 'package:realestate/View/FeaturedWeidgetScreen/ComplaintsScreen.dart';
-import 'package:realestate/View/FeaturedWeidgetScreen/FormsScreen.dart';
-import 'package:realestate/View/FeaturedWeidgetScreen/GalleryScreen.dart';
-import 'package:realestate/View/FeaturedWeidgetScreen/MapsScreen.dart';
-import 'package:realestate/View/FeaturedWeidgetScreen/WaterBillScreen.dart';
 import 'package:realestate/ViewModel/AuthProvider.dart';
-import 'package:realestate/ViewModel/CatagoryProvider.dart';
-import 'package:realestate/ViewModel/GalleryProvider.dart';
 import 'package:sizer/sizer.dart';
-
-import '../Widgets/HomeFeaturedWidget.dart';
+import '../ViewModel/BottomnavProvider.dart';
+import '../ViewModel/PenaltyProvider.dart';
+import '../ViewModel/UserPaymentProvider.dart';
+import '../Widgets/InstallmentsTile.dart';
+import '../Widgets/NoPlotWidget.dart';
 import '../Widgets/PageViewWidget.dart';
+import '../Widgets/PenaltyTileWidget.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -21,20 +17,20 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Consumer<LoginProvider>(builder: (_, provider, __) {
-            return provider.userObject.data!.profilePic == null
-                ? Icon(Icons.person)
-                : ClipOval(
-                    child: Image.network(
-                    provider.userObject.data!.profilePic!,
-                    height: 6.w,
-                    width: 6.w,
-                    fit: BoxFit.cover,
-                  ));
-          }),
-        ),
+        // leading: Padding(
+        //   padding: const EdgeInsets.all(8.0),
+        //   child: Consumer<LoginProvider>(builder: (_, provider, __) {
+        //     return provider.userObject.data!.profilePic == null
+        //         ? Icon(Icons.person)
+        //         : ClipOval(
+        //             child: Image.network(
+        //             provider.userObject.data!.profilePic!,
+        //             height: 6.w,
+        //             width: 6.w,
+        //             fit: BoxFit.cover,
+        //           ));
+        //   }),
+        // ),
         title: Text(
           'Welcome to Al Kareem City',
           style: Theme.of(context).textTheme.bodySmall,
@@ -53,157 +49,180 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 30.h,
-              child: Consumer<LoginProvider>(builder: (_, provider, __) {
-                return PageView.builder(
-                    controller: PageController(viewportFraction: 0.6),
-                    itemCount: provider.userObject.data!.planId!.length,
-                    itemBuilder: (context, index) {
-                      return PageViewWidget(
-                        planIdObject: provider.userObject.data!.planId![index],
-                      );
-                    });
-              }),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-              child: Text(
-                'Featured',
-                style: TextStyle(color: Colors.black, fontSize: 14.sp),
-              ),
-            ),
-            Center(
+            InkWell(
+              onTap: () => context.read<TabControllerProvider>().changeTab(3),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-                child: Wrap(
-                  spacing: 6.w,
-                  runSpacing: 3.h,
+                padding: EdgeInsets.only(left: 4.w, right: 4.w, bottom: 2.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const FacilitiesScreen()),
-                        );
-                      },
-                      child: HomeFeaturedWidget(
-                        imagePath: 'Assets/emailIcon.png',
-                        title: 'AlKareem\nfacility',
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        context.read<CatagoryProvider>().catagory.isEmpty
-                            ? context
-                                .read<CatagoryProvider>()
-                                .fetchCatagory(context)
-                            : null;
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const FormsScreen()),
-                        );
-                      },
-                      child: HomeFeaturedWidget(
-                        imagePath: 'Assets/form.png',
-                        title: 'Forms',
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => MapsScreen()),
-                        );
-                      },
-                      child: HomeFeaturedWidget(
-                        imagePath: 'Assets/Map.png',
-                        title: 'Maps',
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        context.read<GalleryProvider>().fetchGallery(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => GalleryScreen()),
-                        );
-                      },
-                      child: HomeFeaturedWidget(
-                        imagePath: 'Assets/gallery.png',
-                        title: 'Gallery',
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ComplaintsScreen()),
-                        );
-                      },
-                      child: HomeFeaturedWidget(
-                        imagePath: 'Assets/Complaints.png',
-                        title: 'Complaints',
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const WaterBillScreen()),
-                        );
-                      },
-                      child: HomeFeaturedWidget(
-                        imagePath: 'Assets/WaterBill.png',
-                        title: 'Water Bill',
-                      ),
-                    ),
+                    Consumer<LoginProvider>(builder: (_, provider, __) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Hello ${provider.userObject.data!.name}!',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            '${provider.userObject.data!.email}',
+                            style:
+                                TextStyle(color: Colors.green, fontSize: 10.sp),
+                          ),
+                          Text(
+                            'Welcome to\nAl Kareem City Mobile App',
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
+                      );
+                    }),
+                    Consumer<LoginProvider>(builder: (_, provider, __) {
+                      return provider.userObject.data!.profilePic == null
+                          ? Icon(Icons.person)
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(2.w),
+                              child: Image.network(
+                                provider.userObject.data!.profilePic!,
+                                height: 15.w,
+                                width: 15.w,
+                                fit: BoxFit.cover,
+                              ),
+                            );
+                    }),
                   ],
                 ),
               ),
             ),
             Padding(
+              padding: EdgeInsets.only(left: 4.w, bottom: 2.h),
+              child: Text(
+                'Plots you own',
+                style: TextStyle(color: Colors.black, fontSize: 14.sp),
+              ),
+            ),
+            context.read<LoginProvider>().userObject.data!.planId!.isEmpty
+                ? NoPlotsWidget()
+                : SizedBox(
+                    height: 30.h,
+                    child: Consumer<LoginProvider>(builder: (_, provider, __) {
+                      return PageView.builder(
+                          padEnds: provider.userObject.data!.planId!.length == 1
+                              ? true
+                              : false,
+                          controller: PageController(viewportFraction: 0.6),
+                          itemCount: provider.userObject.data!.planId!.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 4.w),
+                              child: PageViewWidget(
+                                planIdObject:
+                                    provider.userObject.data!.planId![index],
+                              ),
+                            );
+                          });
+                    }),
+                  ),
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
               child: Text(
-                'Want to Pay Instalment?',
+                'Your Current/Upcoming Installments',
                 style: TextStyle(color: Colors.black, fontSize: 14.sp),
               ),
             ),
             Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4.w)),
-                margin: EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.h),
-                padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text('Make Instalment Easier.',
-                            style: TextStyle(
-                                fontSize: 12.sp,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold)),
-                        Text(
-                            'Pay Money quickly and securely\nwith two simple clicks in our app.',
-                            style: TextStyle(
-                                fontSize: 10.sp,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w300))
-                      ],
+              margin: EdgeInsets.only(left: 4.w, right: 4.w),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(4.w)),
+              child: Consumer<UserPaymentProvider>(builder: (_, provider, __) {
+                if (provider.isLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (provider.isLoading == false &&
+                    provider.paymentsList!.isEmpty) {
+                  return Center(
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20.w, vertical: 2.h),
+                      child: Image.asset('Assets/Group 4031.png'),
                     ),
-                    Image.asset(
-                      'Assets/image 12.png',
-                      height: 10.h,
-                    )
-                  ],
-                )),
+                  );
+                } else {
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: provider.paymentsList!.length,
+                      itemBuilder: (context, index) {
+                        final currentPlan = provider.paymentsList![index];
+                        return currentPlan.firstPendingPayment == null
+                            ? InactiveInstallmentsTile(
+                                message: currentPlan.message ?? '',
+                                plotNumber: currentPlan.plotNumber ?? '',
+                              )
+                            : InstallmentsTile(
+                                planId: currentPlan.sId!,
+                                dueDate:
+                                    currentPlan.firstPendingPayment!.dueDate!,
+                                plotNumber: currentPlan.plotNumber ?? '',
+                                installmentNumber: currentPlan
+                                        .firstPendingPayment!
+                                        .installmentNumber ??
+                                    0,
+                                amount:
+                                    currentPlan.firstPendingPayment!.amount ??
+                                        0,
+                              );
+                      });
+                }
+              }),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+              child: Text(
+                'Your Penalties',
+                style: TextStyle(color: Colors.black, fontSize: 14.sp),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 4.w, right: 4.w),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4.w),
+              ),
+              child: Consumer<UserPenaltyProvider>(builder: (_, provider, __) {
+                if (provider.isLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (provider.penaltyList!.isEmpty) {
+                  return Center(
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20.w, vertical: 2.h),
+                      child: Image.asset('Assets/Group 4031.png'),
+                    ),
+                  );
+                } else {
+                  return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: provider.penaltyList!.length,
+                      itemBuilder: (context, index) {
+                        final currentPanalty = provider.penaltyList![index];
+                        return PenaltyTileWidget(
+                          status: currentPanalty.paid!,
+                          reason: currentPanalty.reason!,
+                          amount: currentPanalty.amount!,
+                          dueDate: currentPanalty.date!,
+                          penaltyId: currentPanalty.sId!,
+                        );
+                      });
+                }
+              }),
+            ),
             SizedBox(
               height: 10.h,
             ),

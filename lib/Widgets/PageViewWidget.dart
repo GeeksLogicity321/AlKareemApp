@@ -28,15 +28,18 @@ class PageViewWidget extends StatelessWidget {
       child: Stack(
         children: [
           Container(
+            width: 60.w,
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4.w),
               image: DecorationImage(
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.fitWidth,
                 image: AssetImage('Assets/unsplash_hHz4yrvxwlA.png'),
               ),
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 8.w),
+            // width: 60.w,
+            // margin: EdgeInsets.symmetric(horizontal: 8.w),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4.w),
               gradient: LinearGradient(
@@ -79,6 +82,20 @@ class PageViewWidget extends StatelessWidget {
                 ),
                 Text(
                   '${planIdObject.plotId!.sqYard} sq. yards',
+                  style: TextStyle(
+                    fontSize: 10.sp,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Type: ${planIdObject.plotId!.type}',
+                  style: TextStyle(
+                    fontSize: 10.sp,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'installment: ${planIdObject.instalmentAmount}',
                   style: TextStyle(
                     fontSize: 10.sp,
                     color: Colors.white,

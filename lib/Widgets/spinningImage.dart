@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-
 class MySpinningImage extends StatefulWidget {
   @override
   _MySpinningImageState createState() => _MySpinningImageState();
@@ -23,14 +22,12 @@ class _MySpinningImageState extends State<MySpinningImage>
   @override
   Widget build(BuildContext context) {
     return RotationTransition(
-        turns: _controller,
-        child: Image.asset(
-          'Assets/Loading.png',
-          height: 10.h,
-          // Set your desired height
-        ),
-      );
-  
+      turns: _controller,
+      child: Image.asset(
+        'Assets/Loading.png',
+        height: 10.h,
+      ),
+    );
   }
 
   @override

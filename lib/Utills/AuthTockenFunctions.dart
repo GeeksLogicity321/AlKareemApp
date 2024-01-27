@@ -26,6 +26,16 @@ void SetAuthTocken(String authtocken, String userid) async {
   await prefs.setString('userId', userid);
 }
 
+void SetFmcTocken(String token) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString('fmc_token', token);
+}
+
+Future<String?> loadFmcToken() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getString('fmc_token');
+}
+
 Future<bool> checkAuthToken() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.containsKey('auth_token');
@@ -46,6 +56,7 @@ void deleteAuthTocken(BuildContext context) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   try {
     await prefs.remove('auth_token');
+    deleteFcmTocken(context);
     Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => LoginScreen()),
       (Route<dynamic> route) => false,
@@ -53,5 +64,14 @@ void deleteAuthTocken(BuildContext context) async {
     context.read<TabControllerProvider>().changeTab(0);
   } catch (e) {
     errorSnackbar(context, 'Error Could not Logout');
+  }
+}
+
+void deleteFcmTocken(BuildContext context) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  try {
+    await prefs.remove('auth_token');
+  } catch (e) {
+    errorSnackbar(context, 'Error Could not Delet FCM Token');
   }
 }

@@ -14,23 +14,12 @@ import '../../Widgets/spinningImage.dart';
 import '../BottomNavigationBar.dart';
 import 'OnBoardingScreen.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   static const routename = '/';
 
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    checkTokenAndNavigate(context);
-    // wait5MinAndNavigate();
-  }
-
+  // @override
   void checkTokenAndNavigate(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -40,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
         await context.read<LoginProvider>().getUser(context);
         context.read<UserPaymentProvider>().setSeclected(
             context, context.read<LoginProvider>().userObject.data!.sId!);
-            context.read<UserPenaltyProvider>().setSeclected(
+        context.read<UserPenaltyProvider>().setSeclected(
             context, context.read<LoginProvider>().userObject.data!.sId!);
         Navigator.pushReplacementNamed(
             context, BottomNavigationBarWidget.routename);
@@ -58,6 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    checkTokenAndNavigate(context);
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,

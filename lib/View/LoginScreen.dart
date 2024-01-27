@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:realestate/Utills/AuthTockenFunctions.dart';
 import 'package:realestate/View/BottomNavigationBar.dart';
 import 'package:realestate/View/ForgotPassword.dart';
 import 'package:realestate/View/OTP_Screen.dart';
@@ -24,6 +25,14 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
   bool _obscure = true;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +150,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: ElevatedButton(
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
+                            context
+                                .read<LoginProvider>()
+                                .setFCM(await loadFmcToken() ?? '');
                             if (await context
                                 .read<LoginProvider>()
                                 .login(context)) {

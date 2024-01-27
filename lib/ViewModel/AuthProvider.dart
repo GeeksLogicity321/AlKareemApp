@@ -16,6 +16,7 @@ import 'UserPaymentProvider.dart';
 class LoginProvider extends ChangeNotifier {
   String _uniqueId = '';
   String _password = '';
+  String _fCMToken = '';
 
   late UserModel _userObject;
   UserModel get userObject => _userObject;
@@ -30,6 +31,10 @@ class LoginProvider extends ChangeNotifier {
   String? get OTPcode => _OTPcode;
   String? _userId;
   String? get userId => _userId;
+  void setFCM(String fCMToken) {
+    _fCMToken = fCMToken;
+    notifyListeners();
+  }
 
   void setotp(String value) {
     _OTPcode = value;
@@ -63,8 +68,11 @@ class LoginProvider extends ChangeNotifier {
     try {
       final Uri url = Uri.parse(ApiConstants.login);
 
-      final jsonencode =
-          jsonEncode({"uniqueId": _uniqueId, "password": _password});
+      final jsonencode = jsonEncode({
+        "uniqueId": _uniqueId,
+        "password": _password,
+        "deviceToken": _fCMToken
+      });
       final response = await http.post(
         url,
         body: jsonencode,
@@ -174,7 +182,7 @@ class LoginProvider extends ChangeNotifier {
     } catch (e) {
       _isLoading = false;
       notifyListeners();
-      errorSnackbar(context, 'loading user Error' + e.toString());
+      // errorSnackbar(context, 'loading user Error' + e.toString());
       throw e;
     }
   }

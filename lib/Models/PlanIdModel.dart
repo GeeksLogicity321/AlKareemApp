@@ -1,17 +1,17 @@
-class PlanIdModel {
-  List<PlanId>? planId;
+// class PlanIdModel {
+//   List<PlanId>? planId;
 
-  PlanIdModel({this.planId});
+//   PlanIdModel({this.planId});
 
-  PlanIdModel.fromJson(Map<String, dynamic> json) {
-    if (json['planId'] != null) {
-      planId = <PlanId>[];
-      json['planId'].forEach((v) {
-        planId!.add(new PlanId.fromJson(v));
-      });
-    }
-  }
-}
+//   PlanIdModel.fromJson(Map<String, dynamic> json) {
+//     if (json['planId'] != null) {
+//       planId = <PlanId>[];
+//       json['planId'].forEach((v) {
+//         planId!.add(new PlanId.fromJson(v));
+//       });
+//     }
+//   }
+// }
 
 class PlanId {
   String? sId;

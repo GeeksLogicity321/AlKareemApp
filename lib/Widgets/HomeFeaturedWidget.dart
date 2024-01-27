@@ -15,39 +15,31 @@ class HomeFeaturedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 15.h,
-      width: 25.w,
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(2.w)),
-      child: Align(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 0.5.h),
+      child: ListTile(
+        leading: Stack(
           children: [
-            Stack(
-              children: [
-                Image.asset(
-                  'Assets/IconBackground.png',
-                  width: 15.w,
-                ),
-                Positioned(
-                  top: 1.5.h,
-                  left: 3.w,
-                  child: Image.asset(
-                    imagePath,
-                    height: 4.h,
-                  ),
-                ),
-              ],
+            Image.asset(
+              'Assets/IconBackground.png',
+              width: 10.w,
             ),
-            Text(
-              title,
-              style: TextStyle(color: Colors.black, fontSize: 12.sp),
-              textAlign: TextAlign.center,
+            Positioned(
+              top: 0.8.h,
+              left: 2.w,
+              child: Image.asset(
+                imagePath,
+                width: 6.w,
+              ),
             ),
           ],
+        ),
+        title: Text(
+          title,
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium!
+              .copyWith(color: Colors.black),
         ),
       ),
     );

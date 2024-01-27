@@ -26,8 +26,8 @@ class UserPaymentProvider extends ChangeNotifier {
   }
 
   Future<bool> getPayments(BuildContext context) async {
-    _isLoading = true;
-    notifyListeners();
+    // _isLoading = true;
+    // notifyListeners();
     Map<String, String> headers = {'Content-Type': 'application/json'};
     try {
       final Uri url = Uri.parse(ApiConstants.payments + _selected!);

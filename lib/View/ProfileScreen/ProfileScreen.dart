@@ -6,7 +6,16 @@ import 'package:sizer/sizer.dart';
 import '../../Utills/AuthTockenFunctions.dart';
 
 import '../../ViewModel/AuthProvider.dart';
+import '../../ViewModel/CatagoryProvider.dart';
+import '../../ViewModel/GalleryProvider.dart';
+import '../../Widgets/HomeFeaturedWidget.dart';
 import '../../Widgets/ProfileTile.dart';
+import '../FeaturedWeidgetScreen/AlKareenFacilitiesScreen.dart';
+import '../FeaturedWeidgetScreen/ComplaintsScreen.dart';
+import '../FeaturedWeidgetScreen/FormsScreen.dart';
+import '../FeaturedWeidgetScreen/GalleryScreen.dart';
+import '../FeaturedWeidgetScreen/MapsScreen.dart';
+import '../FeaturedWeidgetScreen/WaterBillScreen.dart';
 import 'AccountScreen.dart';
 import 'HelpCenter.dart';
 
@@ -75,6 +84,19 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 height: 2.h,
               ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 4.w, top: 1.h),
+                  child: Text(
+                    'Your Details',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
               Container(
                 width: double.infinity,
                 height: 0.11.h,
@@ -103,8 +125,102 @@ class ProfileScreen extends StatelessWidget {
                 title: 'Help center',
                 icon: Icons.question_mark_rounded,
               ),
-              SizedBox(
-                height: 2.h,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 4.w, top: 1.h),
+                  child: Text(
+                    'Features by Alkareem',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 0.11.h,
+                color: Colors.grey,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const FacilitiesScreen()),
+                  );
+                },
+                child: HomeFeaturedWidget(
+                  imagePath: 'Assets/emailIcon.png',
+                  title: 'AlKareem facility',
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  context.read<CatagoryProvider>().catagory.isEmpty
+                      ? context.read<CatagoryProvider>().fetchCatagory(context)
+                      : null;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const FormsScreen()),
+                  );
+                },
+                child: HomeFeaturedWidget(
+                  imagePath: 'Assets/form.png',
+                  title: 'Forms',
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MapsScreen()),
+                  );
+                },
+                child: HomeFeaturedWidget(
+                  imagePath: 'Assets/Map.png',
+                  title: 'Maps',
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  context.read<GalleryProvider>().fetchGallery(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => GalleryScreen()),
+                  );
+                },
+                child: HomeFeaturedWidget(
+                  imagePath: 'Assets/gallery.png',
+                  title: 'Gallery',
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ComplaintsScreen()),
+                  );
+                },
+                child: HomeFeaturedWidget(
+                  imagePath: 'Assets/Complaints.png',
+                  title: 'Complaints',
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WaterBillScreen()),
+                  );
+                },
+                child: HomeFeaturedWidget(
+                  imagePath: 'Assets/WaterBill.png',
+                  title: 'Water Bill',
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 0.1),
@@ -127,6 +243,9 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 10.h,
               ),
             ],
           ),

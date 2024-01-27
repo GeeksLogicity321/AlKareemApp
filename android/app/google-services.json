@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "839702619253",
+    "project_id": "allkareem",
+    "storage_bucket": "allkareem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839702619253:android:f72472de2e9687193a843c",
+        "android_client_info": {
+          "package_name": "com.geeks.alkareem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVePzNqi22LiKfsc9CT6pe--0uaWTjs_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
