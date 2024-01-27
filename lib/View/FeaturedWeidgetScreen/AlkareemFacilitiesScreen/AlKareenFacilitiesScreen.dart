@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/CinemaScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/ClubsScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/EducationScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/ExecutiveScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/GraveyardScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/HorticulturalScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/HrScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/LibaryScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/MaintenanceScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/MarketingScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/MedicalScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/PropertyExchangeScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/ReligiousScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/SecurityScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/SportsScreen.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../Widgets/HomeFeaturedWidget.dart';
+import '../../../Widgets/HomeFeaturedWidget.dart';
 
 class FacilitiesScreen extends StatelessWidget {
   const FacilitiesScreen({super.key});
@@ -22,105 +37,176 @@ class FacilitiesScreen extends StatelessWidget {
               runSpacing: 3.h,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ClubsScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/clubhouse.png',
                     title: 'Clubs',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MedicalScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/healthcare.png',
                     title: 'Medical',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HorticulturalScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/horticulture.png',
                     title: 'Horticulture',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MaintenanceScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/WaterBill.png',
                     title: 'Maintenance',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SportsScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/sports.png',
                     title: 'Sports',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EducationScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/open-book.png',
                     title: 'Education',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LibaryScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/book.png',
                     title: 'Library',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ReligiousScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/mosque.png',
                     title: 'Religious',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => GraveyardScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/tombstone.png',
                     title: 'GraveYards',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SecurityScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/policeman.png',
                     title: 'Security',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CinemaScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/Complaints.png',
                     title: 'Cinema',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HrScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/WaterBill.png',
                     title: 'HR',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ExecutiveScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/Complaints.png',
                     title: 'Executive\nService',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MarketingScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/WaterBill.png',
                     title: 'Marketing',
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PropertyExchangeScreen()));
+                  },
                   child: HomeFeaturedWidget(
                     imagePath: 'Assets/WaterBill.png',
                     title: 'Property\nExchange',

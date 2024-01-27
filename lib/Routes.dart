@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:realestate/View/FeaturedWeidgetScreen/AlKareenFacilitiesScreen.dart';
+import 'package:realestate/View/FeaturedWeidgetScreen/AlkareemFacilitiesScreen/AlKareenFacilitiesScreen.dart';
 import 'package:realestate/View/FeaturedWeidgetScreen/ComplaintsScreen.dart';
 import 'package:realestate/View/FeaturedWeidgetScreen/FormsScreen.dart';
 import 'package:realestate/View/FeaturedWeidgetScreen/GalleryScreen.dart';

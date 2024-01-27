@@ -55,6 +55,7 @@ dependencies:
   flutter_local_notifications: ^16.3.2
   firebase_analytics: ^10.8.0
   change_app_package_name: ^1.1.0
+  dots_indicator: ^3.0.0
 
 dev_dependencies:
   flutter_test:
