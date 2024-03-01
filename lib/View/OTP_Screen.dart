@@ -29,7 +29,7 @@ class OtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print(
-        '${context.read<LoginProvider>().OTPcode} == ${otpController.value.text}');
+        '${context.read<LoginProvider>().oTPcode} == ${otpController.value.text}');
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -107,8 +107,8 @@ class OtpScreen extends StatelessWidget {
                                   verifyOtp(context);
                                 } else {
                                   print(
-                                      '${context.read<LoginProvider>().OTPcode} == ${otpController.value.text}');
-                                  if (context.read<LoginProvider>().OTPcode ==
+                                      '${context.read<LoginProvider>().oTPcode} == ${otpController.value.text}');
+                                  if (context.read<LoginProvider>().oTPcode ==
                                       otpController.value.text) {
                                     Navigator.of(context).pushAndRemoveUntil(
                                         MaterialPageRoute(
@@ -155,11 +155,10 @@ class OtpScreen extends StatelessWidget {
 
   String? otpValidator(String? value) {
     if (value != null) {
-      value.length < 6 ? 'enter valid OTP' : null;
+      return value.length < 6 ? 'enter valid OTP' : null;
     } else {
       return 'Please Enter OTP';
     }
-    return null;
   }
 
   Future<void> verifyOtp(BuildContext context) async {
@@ -178,7 +177,7 @@ class OtpScreen extends StatelessWidget {
       if (response.statusCode == 200) {
         Map<String, dynamic> jsonResponse = jsonDecode(response.body);
         successSnackbar(context, 'OTP varification Successfull');
-        SetAuthTocken(jsonResponse['Token'],
+        setAuthTocken(jsonResponse['Token'],
             context.read<LoginProvider>().userObject.data!.sId!);
         context.read<UserPaymentProvider>().setSeclected(
             context, context.read<LoginProvider>().userObject.data!.sId!);

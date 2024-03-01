@@ -15,12 +15,12 @@ import 'constants/themes.dart';
 import 'package:sizer/sizer.dart';
 
 void main() async {
-  await WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await FirebaseNotifications.initialize();
   print(await FirebaseNotifications.getFCMTocken());
-  SetFmcTocken(await FirebaseNotifications.getFCMTocken() ?? '');
+  setFmcTocken(await FirebaseNotifications.getFCMTocken() ?? '');
 
   // await FirebaseNotifications.initialize();
 

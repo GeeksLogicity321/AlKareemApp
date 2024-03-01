@@ -19,15 +19,15 @@ class UserPaymentProvider extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  void setSeclected(BuildContext context, String userId) {
+  void setSeclected(BuildContext context, String userId) async {
     _selected = userId;
-    getPayments(context);
+    await getPayments(context);
     notifyListeners();
   }
 
   Future<bool> getPayments(BuildContext context) async {
-    // _isLoading = true;
-    // notifyListeners();
+    _isLoading = true;
+    notifyListeners();
     Map<String, String> headers = {'Content-Type': 'application/json'};
     try {
       final Uri url = Uri.parse(ApiConstants.payments + _selected!);

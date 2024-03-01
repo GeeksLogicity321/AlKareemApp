@@ -20,13 +20,13 @@ void checkTokenAndNavigate(BuildContext context) async {
   }
 }
 
-void SetAuthTocken(String authtocken, String userid) async {
+void setAuthTocken(String authtocken, String userid) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString('auth_token', authtocken);
   await prefs.setString('userId', userid);
 }
 
-void SetFmcTocken(String token) async {
+void setFmcTocken(String token) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString('fmc_token', token);
 }

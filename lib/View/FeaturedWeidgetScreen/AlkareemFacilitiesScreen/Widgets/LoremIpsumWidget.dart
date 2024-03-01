@@ -15,7 +15,7 @@ class LoremIpsumWidget extends StatelessWidget {
             vertical: 1.h,
           ),
           child: Text(
-            'AlKareem ${name}',
+            'AlKareem $name',
             style: TextStyle(
                 fontSize: 17.sp,
                 color: Colors.black,
@@ -47,7 +47,7 @@ class LoremIpsumWidget extends StatelessWidget {
             vertical: 1.h,
           ),
           child: Text(
-            '${name} Facilities',
+            '$name Facilities',
             style: TextStyle(
                 fontSize: 17.sp,
                 color: Colors.black,
@@ -95,7 +95,7 @@ class LoremIpsumWidget extends StatelessWidget {
             vertical: 1.h,
           ),
           child: Text(
-            '${name} Facilities',
+            '$name Facilities',
             style: TextStyle(
                 fontSize: 17.sp,
                 color: Colors.black,
