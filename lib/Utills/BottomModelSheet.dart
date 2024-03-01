@@ -5,6 +5,7 @@ import '../Widgets/PenaltyBottomModelsheel.dart';
 
 void showInstallmentCustomBottomSheet(
     {required BuildContext context,
+    required String bank,
     String? plotNumber,
     int? amount,
     required String planId}) {
@@ -12,6 +13,7 @@ void showInstallmentCustomBottomSheet(
     context: context,
     builder: (BuildContext context) {
       return InstallmentBottomModelSheetWidget(
+        bank: bank,
         amount: amount,
         planId: planId,
         plotNumber: plotNumber,
@@ -19,17 +21,20 @@ void showInstallmentCustomBottomSheet(
     },
   );
 }
-void showPenaltyCustomBottomSheet(
-    {required BuildContext context,
-    int? amount,
-    required String penaltyId}) {
+
+void showPenaltyCustomBottomSheet({
+  required BuildContext context,
+  int? amount,
+  required String penaltyId,
+  required String bank,
+}) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
       return PenaltyBottomModelSheetWidget(
+        bank: bank,
         amount: amount,
         penaltyId: penaltyId,
-        
       );
     },
   );

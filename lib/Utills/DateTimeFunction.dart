@@ -3,10 +3,15 @@ import 'package:intl/intl.dart';
 bool isDateGreaterThanNow(String dueDate) {
   DateTime compareDate = DateTime.parse(dueDate);
   DateTime now = DateTime.now();
-  return compareDate.isBefore(now);
+  if (compareDate.year < now.year ||
+      (compareDate.year == now.year && compareDate.month <= now.month)) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 String convertDateTime(String date) {
   DateTime compareDate = DateTime.parse(date);
-  return DateFormat("dd-MMM-yyyy").format(compareDate);
+  return DateFormat("MMM-yyyy").format(compareDate);
 }

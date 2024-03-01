@@ -11,7 +11,7 @@ class GalleryStoryWidget extends StatelessWidget {
   });
 
   final GalleryModel currentIndexGallery;
-  final PageController _Controller = PageController();
+  final PageController _controller = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class GalleryStoryWidget extends StatelessWidget {
         SizedBox(
           height: 60.h,
           child: PageView.builder(
-            controller: _Controller,
+            controller: _controller,
             itemCount: currentIndexGallery.pics!.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
@@ -49,7 +49,7 @@ class GalleryStoryWidget extends StatelessWidget {
           child: Center(
             child: SmoothPageIndicator(
                 effect: WormEffect(dotHeight: 2.w, dotWidth: 2.w),
-                controller: _Controller,
+                controller: _controller,
                 count: currentIndexGallery.pics!.length),
           ),
         )

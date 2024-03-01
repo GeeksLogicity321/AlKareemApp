@@ -67,6 +67,7 @@ class PenaltyScreen extends StatelessWidget {
                               ? CircularProgressIndicator()
                               : Text(
                                   provider.totalPenalties.toString(),
+                                  softWrap: true,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20.sp,

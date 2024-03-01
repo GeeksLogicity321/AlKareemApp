@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:realestate/View/BanksScreen.dart';
 import 'package:sizer/sizer.dart';
-
-import '../Utills/BottomModelSheet.dart';
 
 class PenaltyTileWidget extends StatelessWidget {
   PenaltyTileWidget({
@@ -28,7 +27,7 @@ class PenaltyTileWidget extends StatelessWidget {
           child: Image.asset('Assets/image 21.png'),
         ),
         title: Text(
-          'Reason: ${reason}',
+          'Reason: $reason',
           style: TextStyle(
             fontSize: 13.sp,
             color: status ? Colors.grey : Colors.black,
@@ -54,10 +53,17 @@ class PenaltyTileWidget extends StatelessWidget {
                     ))
                 : InkWell(
                     onTap: () {
-                      showPenaltyCustomBottomSheet(
-                          context: context,
-                          amount: amount,
-                          penaltyId: penaltyId);
+                      // showPenaltyCustomBottomSheet(
+                      //     context: context,
+                      //     amount: amount,
+                      //     penaltyId: penaltyId);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => BankSearchScreen(
+                                  ispenalty: true,
+                                  amount: amount,
+                                  penaltyId: penaltyId))));
                     },
                     child: Container(
                       height: 3.h,

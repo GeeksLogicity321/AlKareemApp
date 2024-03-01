@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:realestate/View/ProfileScreen/AboutUsScreen.dart';
+import 'package:realestate/View/ProfileScreen/Terms&Conditions.dart';
+import 'package:realestate/View/ProfileScreen/WhoWeAreScreen.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -160,6 +163,7 @@ class ProfileScreen extends StatelessWidget {
                 onTap: () {
                   context.read<CatagoryProvider>().catagory.isEmpty
                       ? context.read<CatagoryProvider>().fetchCatagory(context)
+                      // ignore: unnecessary_statements
                       : null;
                   Navigator.push(
                     context,
@@ -221,6 +225,45 @@ class ProfileScreen extends StatelessWidget {
                   imagePath: 'Assets/WaterBill.png',
                   title: 'Water Bill',
                 ),
+              ),
+              Container(
+                width: double.infinity,
+                height: 0.11.h,
+                color: Colors.grey,
+              ),
+              ProfileTiles(
+                ontap: () {
+                  // Navigator.pushNamed(context, AccountScreen.routename);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TermsConditionsScreen()),
+                  );
+                },
+                title: 'Terms & Conditions',
+                icon: Icons.warning_amber_rounded,
+              ),
+              ProfileTiles(
+                ontap: () {
+                  // Navigator.pushNamed(context, AccountScreen.routename);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AboutUsScreen()),
+                  );
+                },
+                title: 'About Us',
+                icon: Icons.warning_amber_rounded,
+              ),
+              ProfileTiles(
+                ontap: () {
+                  // Navigator.pushNamed(context, AccountScreen.routename);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WhoWeAreScreen()),
+                  );
+                },
+                title: 'Who we are',
+                icon: Icons.house_outlined,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 0.1),

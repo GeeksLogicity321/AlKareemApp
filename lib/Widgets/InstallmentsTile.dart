@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:realestate/View/BanksScreen.dart';
 import 'package:sizer/sizer.dart';
-import '../Utills/BottomModelSheet.dart';
 import '../Utills/DateTimeFunction.dart';
 
 class InstallmentsTile extends StatelessWidget {
@@ -63,11 +63,15 @@ class InstallmentsTile extends StatelessWidget {
                     fontWeight: FontWeight.bold)),
             currentMonthNotPaid
                 ? InkWell(
-                    onTap: () => showInstallmentCustomBottomSheet(
-                        planId: planId,
-                        context: context,
-                        amount: amount,
-                        plotNumber: plotNumber),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BankSearchScreen(
+                                  ispenalty: false,
+                                  planId: planId,
+                                  plotNumber: plotNumber,
+                                  amount: amount,
+                                ))),
                     child: Container(
                       height: 3.h,
                       width: 20.w,

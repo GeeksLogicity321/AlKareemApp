@@ -229,6 +229,7 @@ class ComplaintsScreen extends StatelessWidget {
                         onPressed: () {
                           _formKey.currentState!.validate()
                               ? callComplaintApi(context)
+                              // ignore: unnecessary_statements
                               : null;
                         },
                         child: Text('Submit'))),
@@ -270,7 +271,7 @@ class ComplaintsScreen extends StatelessWidget {
         errorSnackbar(context, jsonResponse['data']);
       }
     } catch (e) {
-      errorSnackbar(context, 'Error: ${e}');
+      errorSnackbar(context, 'Error: $e');
     }
   }
 }

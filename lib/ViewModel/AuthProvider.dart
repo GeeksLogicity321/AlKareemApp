@@ -27,8 +27,8 @@ class LoginProvider extends ChangeNotifier {
   String get uniqueId => _uniqueId;
   String get password => _password;
 
-  String? _OTPcode;
-  String? get OTPcode => _OTPcode;
+  String? _oTPcode;
+  String? get oTPcode => _oTPcode;
   String? _userId;
   String? get userId => _userId;
   void setFCM(String fCMToken) {
@@ -37,7 +37,7 @@ class LoginProvider extends ChangeNotifier {
   }
 
   void setotp(String value) {
-    _OTPcode = value;
+    _oTPcode = value;
     notifyListeners();
   }
 
@@ -83,7 +83,7 @@ class LoginProvider extends ChangeNotifier {
         final jsonResponse = json.decode(response.body);
         _userObject = UserModel.fromJson(jsonResponse);
         if (_userObject.data!.isVerify!) {
-          SetAuthTocken(jsonResponse['Token'], _userObject.data!.sId!);
+          setAuthTocken(jsonResponse['Token'], _userObject.data!.sId!);
           context
               .read<UserPaymentProvider>()
               .setSeclected(context, _userObject.data!.sId!);
@@ -205,7 +205,7 @@ class LoginProvider extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         _isLoading = true;
-        _OTPcode = jsonResponse['code'].toString();
+        _oTPcode = jsonResponse['code'].toString();
         _userId = jsonResponse['data']['_id'];
         _isLoading = false;
         notifyListeners();

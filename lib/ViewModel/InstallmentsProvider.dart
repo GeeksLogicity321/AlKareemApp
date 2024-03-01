@@ -50,7 +50,7 @@ class Installmentprovider extends ChangeNotifier {
         _isLoading = true;
         final Map<String, dynamic> jsonResponse = json.decode(response.body);
         _userObject = UserModel.fromJson(jsonResponse['data']);
-        SetAuthTocken(jsonResponse['Token'], _userObject.data!.sId!);
+        setAuthTocken(jsonResponse['Token'], _userObject.data!.sId!);
         _isLoading = false;
         notifyListeners();
 

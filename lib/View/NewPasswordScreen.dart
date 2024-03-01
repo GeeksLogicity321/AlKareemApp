@@ -123,8 +123,6 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                                       builder: (context) =>
                                           BottomNavigationBarWidget()),
                                   (Route<dynamic> route) => false);
-                            } else {
-                              null;
                             }
                           }
                         }
