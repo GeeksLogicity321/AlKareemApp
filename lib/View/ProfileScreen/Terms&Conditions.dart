@@ -21,6 +21,25 @@ class TermsConditionsScreen extends StatelessWidget {
                   vertical: 2.h,
                 ),
                 child: Image.asset(
+                  'Assets\adress.png',
+                  height: 20.h,
+                ),
+              ),
+              Center(
+                child: Text(
+                  'Office Address: Head Office: LG,\n 65/D ALHafeez Heights Gulberg III Lahore,\nContact No: 042-35760680',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 13.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 2.h,
+                ),
+                child: Image.asset(
                   'Assets/terms-and-conditions.png',
                   height: 20.h,
                 ),
